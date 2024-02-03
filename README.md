@@ -1,158 +1,156 @@
-<img align="right" width="360px" height="410px" src="./.github/assets/project-logo-vertical.png">
+# Next.js企业样板
 
-# Next.js Enterprise Boilerplate </br>  [![GitHub Actions Workflow Status][check-workflow-badge]][check-workflow-badge-link] [![GitHub License][github-license-badge]][github-license-badge-link] [![GitHub contributors][github-contributors-badge]][github-contributors-badge-link] [![Discord][discord-badge]][discord-badge-link] [![Blazity][made-by-blazity-badge]][made-by-blazity-badge-link]
+欢迎来到Next.js企业样板,一个开源的企业项目模板!它集成了丰富的功能,可以帮助您构建高性能、可维护和令人愉快的应用程序。我们已经完成了所有艰苦的工作,所以请放松,准备用令人惊叹的应用程序征服世界吧!🌍
 
-Welcome to the _Next.js Enterprise Boilerplate_, an open-source template for enterprise projects! It's loaded with features that'll help you build a high-performance, maintainable, and enjoyable app. We've done all the heavy lifting for you, so sit back, relax, and get ready to conquer the world with your incredible app! 🌍
+> [!注意]
+> **Blazity** 是一支Next.js/无头专家团队。如果您想与我们讨论您的项目或仅仅与我们聊聊天,请联系我们[contact@blazity.com](https://blazity.com)
 
-> [!NOTE]
-> **Blazity** is a group of Next.js/Headless experts. Contact us at [contact@blazity.com](https://blazity.com) if you’d like to talk about your project or just to have a chat with us
+## 特性
 
-## Features
+使用这个模板,您可以获得所有您需要的精彩功能:
 
-With this template, you get all the awesomeness you need:
+- 🏎️ **[Next.js](https://nextjs.org/)** - 默认快速,性能优化配置(带**应用程序目录**)
+- 💅 **[Tailwind CSS](https://tailwindcss.com/)** - 实用优先的CSS框架,用于快速UI开发
+- ✨ **[ESlint](https://eslint.org/)** 和 **[Prettier](https://prettier.io/)** - 编写清晰、一致和无错误的代码
+- 🛠️ **[极端严格的TypeScript](https://www.typescriptlang.org/)** - 带 [`ts-reset`](https://github.com/total-typescript/ts-reset) 库实现终极类型安全
+- 🚀 **[GitHub Actions](https://github.com/features/actions)** - 预配置的操作实现流畅的工作流程,包括捆绑包大小和性能统计
+- 💯 **完美的Lighthouse评分** - 因为性能很重要
+- **[包分析插件](https://www.npmjs.com/package/@next/bundle-analyzer)** - 监控你的包大小
+- **[Jest](https://jestjs.io/)** 和 **[React测试库](https://testing-library.com/react)** - 用于强大的单元和集成测试
+- **[Playwright](https://playwright.dev/)** -像专业人士一样编写端到端测试
+- **[Storybook](https://storybook.js.org/)** - 创建、测试和展示你的组件
+- **烟雾测试**和**验收测试** - 确保您的部署的可信度
+- **[常规提交git钩子](https://www.conventionalcommits.org/)** - 保持整洁的提交历史
+- **[可观察性](https://opentelemetry.io/)** - 开放式遥测集成实现无缝监控
+- **[绝对导入](https://nextjs.org/docs/advanced-features/module-path-aliases)** - 不再出现意大利面代码导入
+- **[健康检查](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/)** - 与Kubernetes兼容实现强健部署
+- **[Radix UI](https://www.radix-ui.com/)** - 无头UI组件实现无限定制
+- **[CVA](http://cva.style/)** - 创建一致、可重用和原子设计系统
+- **[Renovate BOT](https://www.whitesourcesoftware.com/free-developer-tools/renovate)** - 自动更新依赖项,这样您可以专注于编码
+- **[补丁包](https://www.npmjs.com/package/patch-package)** - 修复外部依赖项而不失明智
+- **组件耦合和内聚关系图** - 一个用于管理组件关系的工具
+- **[自动ChatGPT代码审查](https://openai.com/chatgpt)** - **使用AI驱动的代码审查保持领先地位!**  
+- **[语义版本控制](https://github.com/semantic-release/semantic-release)** - 用于自动生成变更日志
+- **[T3 Env](https://env.t3.gg/)** - 轻松管理环境变量
 
-- 🏎️ **[Next.js](https://nextjs.org/)** - Fast by default, with config optimized for performance (with **App Directory**)
-- 💅 **[Tailwind CSS](https://tailwindcss.com/)** - A utility-first CSS framework for rapid UI development
-- ✨ **[ESlint](https://eslint.org/)** and **[Prettier](https://prettier.io/)** - For clean, consistent, and error-free code
-- 🛠️ **[Extremely strict TypeScript](https://www.typescriptlang.org/)** - With [`ts-reset`](https://github.com/total-typescript/ts-reset) library for ultimate type safety
-- 🚀 **[GitHub Actions](https://github.com/features/actions)** - Pre-configured actions for smooth workflows, including Bundle Size and performance stats
-- 💯 **Perfect Lighthouse score** - Because performance matters
-- **[Bundle analyzer plugin](https://www.npmjs.com/package/@next/bundle-analyzer)** - Keep an eye on your bundle size
-- **[Jest](https://jestjs.io/)** and **[React Testing Library](https://testing-library.com/react)** - For rock-solid unit and integration tests
-- **[Playwright](https://playwright.dev/)** - Write end-to-end tests like a pro
-- **[Storybook](https://storybook.js.org/)** - Create, test, and showcase your components
-- **Smoke Testing** and **Acceptance Tests** - For confidence in your deployments
-- **[Conventional commits git hook](https://www.conventionalcommits.org/)** - Keep your commit history neat and tidy
-- **[Observability](https://opentelemetry.io/)** - Open Telemetry integration for seamless monitoring
-- **[Absolute imports](https://nextjs.org/docs/advanced-features/module-path-aliases)** - No more spaghetti imports
-- **[Health checks](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/)** - Kubernetes-compatible for robust deployments
-- **[Radix UI](https://www.radix-ui.com/)** - Headless UI components for endless customization
-- **[CVA](http://cva.style/)** - Create a consistent, reusable, and atomic design system
-- **[Renovate BOT](https://www.whitesourcesoftware.com/free-developer-tools/renovate)** - Auto-updating dependencies, so you can focus on coding
-- **[Patch-package](https://www.npmjs.com/package/patch-package)** - Fix external dependencies without losing your mind
-- **Components coupling and cohesion graph** - A tool for managing component relationships
-- **[Automated ChatGPT Code Reviews](https://openai.com/chatgpt)** - **Stay on the cutting edge with AI-powered code reviews!**
-- **[Semantic Release](https://github.com/semantic-release/semantic-release)** - for automatic changelog
-- **[T3 Env](https://env.t3.gg/)** - Manage your environment variables with ease
+## 目录
 
-## Table of Contents
-
-- [Next.js Enterprise Boilerplate](#nextjs-enterprise-boilerplate)
-  - [Features](#features)
-  - [Table of Contents](#table-of-contents)
-  - [Getting Started](#-getting-started)
-  - [Deployment](#-deployment)
-  - [Scripts Overview](#-scripts-overview)
-  - [Coupling Graph](#-coupling-graph)
-  - [Testing](#-testing)
-    - [Running Tests](#running-tests)
-    - [Acceptance Tests](#acceptance-tests)
-    - [Smoke Testing](#smoke-testing)
-  - [Styling and Design System](#-styling-and-design-system)
-    - [CVA - A New Approach to Variants](#cva---a-new-approach-to-variants)
-  - [State Management](#-state-management)
+- [Next.js企业样板](#nextjs-enterprise-boilerplate)
+  - [特性](#features)
+  - [目录](#table-of-contents)
+  - [开始](#-getting-started)
+  - [部署](#-deployment)
+  - [脚本概览](#-scripts-overview)
+  - [耦合关系图](#-coupling-graph)
+  - [测试](#-testing)
+    - [运行测试](#running-tests)
+    - [验收测试](#acceptance-tests)
+    - [烟雾测试](#smoke-testing)
+  - [样式和设计系统](#-styling-and-design-system)
+    - [CVA - 新型变体方法](#cva---a-new-approach-to-variants)
+  - [状态管理](#-state-management)
     - [Zustand](#zustand)
     - [Jotai](#jotai)
     - [Recoil](#recoil)
-  - [ChatGPT Code Review](#-chatgpt-code-review)
-  - [Environment Variables handling](#-environment-variables-handling)
-  - [Contribution](#-contribution)
-  - [Support](#support)
-  - [License](#-license)
-  - [Contributors](#contributors)
+  - [ChatGPT代码审查](#-chatgpt-code-review)
+  - [环境变量处理](#-environment-variables-handling)
+  - [贡献](#-contribution)
+  - [支持](#support)
+  - [许可证](#-license)
+  - [贡献者](#contributors)
 
-## 🎯 Getting Started
+## 🎯 开始
 
-To get started with this boilerplate, follow these steps:
+要开始使用这个样板,请执行以下步骤:
 
-1. Fork & clone repository:
+1. 分支和克隆存储库:
 
 ```bash
-## Don't forget to ⭐ star and fork it first :)
+## 不要忘记先给个⭐!
 git clone https://github.com/<your_username)/next-enterprise.git
 ```
 
-2. Install the dependencies:
+2. 安装依赖项:
 
 ```bash
 yarn install --frozen-lockfile
 ```
 
-3. Run the development server:
+3. 运行开发服务器:
 
 ```bash
 yarn dev
 ```
 
-4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. 使用浏览器打开 [http://localhost:3000](http://localhost:3000) 查看结果。
 
-5. This project uses a git hook to enforce [conventional commits](https://github.com/qoomon/git-conventional-commits). To install the git hook, run the following command in the root directory of the project:
+5. 这个项目使用git钩子强制执行[常规提交](https://github.com/qoomon/git-conventional-commits)。要安装git钩子,请在项目的根目录中运行以下命令:
 
 ```sh
 brew install pre-commit
 pre-commit install -t commit-msg
 ```
 
-## 🚀 Deployment
+## 🚀 部署
 
-Easily deploy your Next.js app with [Vercel](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=github&utm_campaign=next-enterprise) by clicking the button below:
+通过点击下面的按钮,可以使用 [Vercel](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=github&utm_campaign=next-enterprise) 轻松部署 Next.js 应用程序:
 
 [![Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/Blazity/next-enterprise)
 
-## 📃 Scripts Overview
+## 📃 脚本概览
 
-The following scripts are available in the `package.json`:
+`package.json` 中提供了以下脚本:
 
-- `dev`: Starts the development server with colorized output
-- `build`: Builds the app for production
-- `start`: Starts the production server
-- `lint`: Lints the code using ESLint
-- `lint:fix`: Automatically fixes linting errors
-- `prettier`: Checks the code for proper formatting
-- `prettier:fix`: Automatically fixes formatting issues
-- `analyze`: Analyzes the bundle sizes for Client, Server and Edge environments
-- `storybook`: Starts the Storybook server
-- `build-storybook`: Builds the Storybook for deployment
-- `test`: Runs unit and integration tests
-- `e2e:headless`: Runs end-to-end tests in headless mode
-- `e2e:ui`: Runs end-to-end tests with UI
-- `format`: Formats the code with Prettier
-- `postinstall`: Applies patches to external dependencies
-- `preinstall`: Ensures the project is installed with Yarn
-- `coupling-graph`: **Generates a coupling and cohesion graph for the components**
+- `dev`: 使用彩色输出启动开发服务器
+- `build`: 为生产环境构建应用程序  
+- `start`: 启动生产服务器
+- `lint`: 使用 ESLint 对代码进行检测
+- `lint:fix`: 自动修复检测到的错误
+- `prettier`: 检查代码格式是否正确
+- `prettier:fix`: 自动修复格式问题
+- `analyze`: 分析客户端、服务器和边缘环境的包大小
+- `storybook`: 启动 Storybook 服务器
+- `build-storybook`: 构建 Storybook 用于部署
+- `test`: 运行单元和集成测试
+- `e2e:headless`: 在无头模式下运行端到端测试
+- `e2e:ui`: 运行带UI的端到端测试
+- `format`: 使用 Prettier 格式化代码
+- `postinstall`: 对外部依赖项应用补丁
+- `preinstall`: 确保使用 Yarn 安装项目
+- `coupling-graph`: 生成组件的耦合和内聚关系图
 
-## 🔗 Coupling Graph
+## 🔗 耦合关系图
 
-The `coupling-graph` script is a useful tool that helps visualize the coupling and connections between your project's internal modules. It's built using the [Madge](https://github.com/pahen/madge) library. To generate the graph, simply run the following command:
+`coupling-graph` 脚本是一个有用的工具,可帮助可视化项目内部模块之间的耦合和连接。它使用 [Madge](https://github.com/pahen/madge) 库构建。要生成关系图,请运行以下命令:
 
 ```bash
 yarn coupling-graph
 ```
 
-This will create a `graph.svg` file, which contains a graphical representation of the connections between your components. You can open the file with any SVG-compatible viewer.
+这将创建一个 `graph.svg` 文件,其中包含组件之间连接的图形表示。您可以使用任何兼容 SVG 的查看器打开该文件。
 
 ![graph](https://user-images.githubusercontent.com/28964599/233662744-3ba89713-8466-49cd-9be7-e6fb38191f58.png)
 
-## 🧪 Testing
+## 🧪 测试
 
-This boilerplate comes with various testing setups to ensure your application's reliability and robustness.
+该样板提供了各种测试设置,以确保应用程序的可靠性和健壮性。
 
-### Running Tests
+### 运行测试
 
-- **Unit and integration tests**: Run Jest tests using `yarn test`
-- **End-to-end tests (headless mode)**: Run Playwright tests in headless mode with `yarn e2e:headless`
-- **End-to-end tests (UI mode)**: Run Playwright tests with UI using `yarn e2e:ui`
+- **单元和集成测试**: 使用 `yarn test` 运行 Jest 测试
+- **端到端测试(无头模式)**: 使用 `yarn e2e:headless` 在无头模式下运行 Playwright 测试
+- **端到端测试(UI 模式)**: 使用 `yarn e2e:ui` 在 UI 模式下运行 Playwright 测试
 
 <img width="1392" alt="image" src="https://user-images.githubusercontent.com/28964599/233666655-93b7d08b-2fd8-406a-b43c-44d4d96cf387.png">
 
-### Acceptance Tests
+### 验收测试
 
-To write acceptance tests, we leverage Storybook's [`play` function](https://storybook.js.org/docs/react/writing-stories/play-function#writing-stories-with-the-play-function). This allows you to interact with your components and test various user flows within Storybook.
+要编写验收测试,我们利用 Storybook 的 [`play` 函数](https://storybook.js.org/docs/react/writing-stories/play-function#writing-stories-with-the-play-function)。这允许您在 Storybook 中与组件交互并测试各种用户流。
 
 ```ts
 /*
- * See https://storybook.js.org/docs/react/writing-stories/play-function#working-with-the-canvas
- * to learn more about using the canvasElement to query the DOM
+ * 参见 https://storybook.js.org/docs/react/writing-stories/play-function#working-with-the-canvas 
+ * 了解有关使用 canvasElement 查询 DOM 的更多信息
  */
 export const FilledForm: Story = {
   play: async ({ canvasElement }) => {
@@ -173,7 +171,7 @@ export const FilledForm: Story = {
     await userEvent.type(passwordInput, "ExamplePassword", {
       delay: 100,
     })
-    // See https://storybook.js.org/docs/react/essentials/actions#automatically-matching-args to learn how to setup logging in the Actions panel
+    // 参见 https://storybook.js.org/docs/react/essentials/actions#automatically-matching-args 了解如何在Actions面板中设置日志记录
     const submitButton = canvas.getByRole("button")
 
     await userEvent.click(submitButton)
@@ -181,62 +179,62 @@ export const FilledForm: Story = {
 }
 ```
 
-### Smoke Testing
+### 烟雾测试
 
-In this boilerplate, we use Storybook's out-of-the-box support for smoke testing to verify that components render correctly without any errors. Just run `yarn test-storybook` to perform smoke testing. Remember to write stories in JSX or TSX format only. Smoke testing and a lot of other functionalities dont work well with MDX stories.
+在这个样板中,我们利用 Storybook 开箱即用的烟雾测试支持来验证组件是否渲染正确,没有任何错误。只需运行 `yarn test-storybook` 执行烟雾测试。请记住,只使用 JSX 或 TSX 格式编写故事。烟雾测试和许多其他功能与 MDX 故事配合得不好。
 
-## 🎨 Styling and Design System
+## 🎨 样式和设计系统
 
-This boilerplate uses Tailwind CSS for styling and CVA for creating a powerful, easy-to-use design system. If you want to learn more about the setup, check out this fantastic video by Vercel:
+该样板使用 Tailwind CSS 进行样式设置,使用 CVA 创建强大且易于使用的设计系统。如果您想了解更多关于设置的信息,请观看 Vercel 的这段精彩视频:
 
 [![Styling and Design System](https://img.youtube.com/vi/T-Zv73yZ_QI/0.jpg)](https://www.youtube.com/watch?v=T-Zv73yZ_QI&ab_channel=Vercel)
 
-### CVA - A New Approach to Variants
+### CVA - 新型变体方法
 
-While CSS-in-TS libraries such as [Stitches](https://stitches.dev/) and [Vanilla Extract](https://vanilla-extract.style/) are great for building type-safe UI components, they might not be the perfect fit for everyone. You may prefer more control over your stylesheets, need to use a framework like Tailwind CSS, or simply enjoy writing your own CSS.
+尽管像 [Stitches](https://stitches.dev/) 和 [Vanilla Extract](https://vanilla-extract.style/) 这样的 CSS-in-TS 库很好地构建了类型安全的 UI 组件,但它们可能不是每个人的完美选择。您可能更喜欢对样式表具有更多控制权,需要使用 Tailwind CSS 等框架,或者简单地喜欢编写自己的 CSS。
 
-Creating variants using traditional CSS can be a tedious task, requiring you to manually match classes to props and add types. CVA is here to take that pain away, allowing you to focus on the enjoyable aspects of UI development. By providing an easy and type-safe way to create variants, CVA simplifies the process and helps you create powerful design systems without compromising on the flexibility and control of CSS.
+使用传统的 CSS 创建变体可能是一项乏味的任务,需要您手动匹配类与 props,并添加类型。CVA 在此释放您的痛苦,让您可以专注于 UI 开发的乐趣部分。通过提供一种简单且类型安全的方式来创建变体,CVA 简化了该过程,并帮助您在不损失 CSS 的灵活性和控制力的情况下创建强大的设计系统。
 
-## 💾 State Management
+## 💾 状态管理
 
-While this boilerplate doesn't include a specific state management library, we believe it's essential for you to choose the one that best suits your project's needs. Here are some libraries we recommend for state management:
+虽然这个样板没有包含具体的状态管理库,但我们认为您选择最适合项目需求的状态管理库非常重要。这里是我们推荐用于状态管理的一些库:
 
 ### Zustand
 
-[Zustand](https://github.com/pmndrs/zustand) is a small, fast, and scalable state management library. It's designed to be simple and intuitive, making it a great choice for small to medium-sized projects. It's also optimized for bundle size, ensuring minimal impact on your app's performance.
+[Zustand](https://github.com/pmndrs/zustand)是一个小巧、快速且可扩展的状态管理库。它的设计简单直观,非常适合中小型项目。它还优化了包大小,确保对您的应用程序性能影响最小。
 
 ### Jotai
 
-[Jotai](https://github.com/pmndrs/jotai) is an atom-based state management library for React that focuses on providing a minimal and straightforward API. Its atom-based approach allows you to manage your state in a granular way while still being highly optimized for bundle size.
+[Jotai](https://github.com/pmndrs/jotai)是一个关注提供最小和简单API的React原子状态管理库。它的原子方法允许您以细粒度的方式管理状态,同时仍然高度优化包大小。
 
 ### Recoil
 
-[Recoil](https://recoiljs.org/) is a state management library developed by Facebook, specifically designed for React applications. By utilizing atoms and selectors, Recoil allows you to efficiently manage state and derived state. Its key benefit is the ability to update components only when the state they're subscribed to changes, reducing unnecessary re-renders and keeping your application fast and efficient. Recoil also offers great developer experience with built-in debugging tools.
+[Recoil](https://recoiljs.org/)是一个由Facebook开发的状态管理库,专为React应用程序设计。通过使用原子和选择器,Recoil可以有效地管理状态和派生状态。其关键好处是只更新订阅的状态发生变化的组件,减少不必要的重新渲染,使您的应用程序保持快速和高效。Recoil还提供了内置的调试工具,具有出色的开发者体验。
 
-Choose the library that best fits your requirements and project structure to ensure an efficient state management solution for your application.
+选择最适合您的要求和项目结构的库,为您的应用程序提供高效的状态管理解决方案。
 
-## 🤖 ChatGPT Code Review
+## 🤖 ChatGPT代码审查
 
-We've integrated the innovative [ChatGPT Code Review](https://github.com/anc95/ChatGPT-CodeReview) for AI-powered, automated code reviews. This feature provides real-time feedback on your code, helping improve code quality and catch potential issues.
+我们集成了创新的 [ChatGPT代码审查](https://github.com/anc95/ChatGPT-CodeReview) 进行AI驱动的自动代码审查。此功能为您的代码提供实时反馈,帮助改进代码质量并发现潜在问题。 
 
-To use ChatGPT Code Review, add an `OPENAI_API_KEY` environment variable with an appropriate key from the OpenAI platform. For setup details, refer to the [Using GitHub Actions](https://github.com/anc95/ChatGPT-CodeReview#using-github-actions) section in the documentation.
+要使用 ChatGPT 代码审查,请添加一个`OPENAI_API_KEY`环境变量,并使用OpenAI平台中的适当键。有关设置详细信息,请参阅文档中的[使用 GitHub 操作](https://github.com/anc95/ChatGPT-CodeReview#using-github-actions)部分。
 
 ![image](https://user-images.githubusercontent.com/28964599/233685071-e1371edf-6359-41c3-a989-335d6ee09cb7.png)
 
-## 💻 Environment Variables handling
+## 💻 环境变量处理
 
-[T3 Env](https://env.t3.gg/) is a library that provides environmental variables checking at build time, type validation and transforming. It ensures that your application is using the correct environment variables and their values are of the expected type. You’ll never again struggle with runtime errors caused by incorrect environment variable usage.
+[T3 Env](https://env.t3.gg/)是一个在构建时提供环境变量检查、类型验证和转换的库。它确保您的应用程序使用正确的环境变量以及它们的值为预期类型。您将不再为不正确的环境变量使用导致的运行时错误所困扰。
 
-Config file is located at `env.mjs`. Simply set your client and server variables and import `env` from any file in your project.
+配置文件位于 `env.mjs`。只需设置客户端和服务器变量,然后从项目中的任何文件导入 `env`。
 
 ```ts
 export const env = createEnv({
   server: {
-    // Server variables
+    // 服务器变量
     SECRET_KEY: z.string(),
   },
   client: {
-    // Client variables
+    // 客户端变量
     API_URL: z.string().url(),
   },
   runtimeEnv: {
@@ -245,27 +243,26 @@ export const env = createEnv({
     API_URL: process.env.NEXT_PUBLIC_API_URL,
   },
 })
-```
 
-If the required environment variables are not set, you'll get an error message:
+如果未设置所需的环境变量,将显示错误消息:
 
 ```sh
-  ❌ Invalid environment variables: { SECRET_KEY: [ 'Required' ] }
+  ❌ 无效的环境变量:{ SECRET_KEY: [ '必填' ] }
 ```
 
-## 🤝 Contribution
+## 🤝 贡献
 
-Contributions are always welcome! To contribute, please follow these steps:
+欢迎贡献!要贡献,请执行以下步骤:
 
-1. Fork the repository.
-2. Create a new branch with a descriptive name.
-3. Make your changes, and commit them using the [Conventional Commits](https://www.conventionalcommits.org/) format.
-4. Push your changes to the forked repository.
-5. Create a pull request, and we'll review your changes.
+1. 分支存储库。
+2. 使用描述性名称创建新分支。
+3. 进行更改,并使用 [常规提交](https://www.conventionalcommits.org/) 格式提交。
+4. 将更改推送到分支存储库。  
+5. 创建拉取请求,我们将审查您的更改。
 
-## Support
+## 支持
 
-If you're looking for help or simply want to share your thoughts about the project, we encourage you to join our Discord community. Here's the link: [https://blazity.com/discord](https://blazity.com/discord). It's a space where we exchange ideas and help one another. Everyone's input is appreciated, and we look forward to welcoming you.
+如果您需要帮助或者只是想分享对这个项目的看法,我们鼓励您加入我们的Discord社区。这里是链接:[https://blazity.com/discord](https://blazity.com/discord)。这是一个交流思想和互相帮助的空间。我们欢迎每个人的贡献和意见。
 
 <br />
 <a href="https://discord.gg/fyWtyNKmfX" style="width: 100%; display: flex; justify-content: center;">
@@ -274,9 +271,9 @@ If you're looking for help or simply want to share your thoughts about the proje
 <br />
 
 
-## 📜 License
+## 📜 许可证
 
-This project is licensed under the MIT License. For more information, see the [LICENSE](./LICENSE) file.
+该项目使用 MIT 许可证授权。更多信息请参阅 [LICENSE](./LICENSE) 文件。
 
 ## Contributors
 
