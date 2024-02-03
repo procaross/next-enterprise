@@ -5,6 +5,8 @@ import { env } from "./env.mjs"
 /**
  * @type {import('next').NextConfig}
  */
+const path = require("path")
+
 const config = withPlugins([[withBundleAnalyzer({ enabled: env.ANALYZE })]], {
   reactStrictMode: true,
   experimental: { instrumentationHook: true },
@@ -15,6 +17,10 @@ const config = withPlugins([[withBundleAnalyzer({ enabled: env.ANALYZE })]], {
       { source: "/health", destination: "/api/health" },
       { source: "/ping", destination: "/api/health" },
     ]
+  },
+  webpack: (config) => {
+    config.resolve.alias["@"] = path.resolve(__dirname)
+    return config
   },
 })
 
