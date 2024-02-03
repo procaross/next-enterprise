@@ -1,11 +1,11 @@
 import withBundleAnalyzer from "@next/bundle-analyzer"
 import withPlugins from "next-compose-plugins"
+import path from "path"
 import { env } from "./env.mjs"
 
 /**
  * @type {import('next').NextConfig}
  */
-const path = require("path")
 
 const config = withPlugins([[withBundleAnalyzer({ enabled: env.ANALYZE })]], {
   reactStrictMode: true,
