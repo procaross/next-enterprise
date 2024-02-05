@@ -1,5 +1,5 @@
-import { ClerkProvider } from "@clerk/nextjs"
 import { zhCN } from "@clerk/localizations"
+import { ClerkProvider } from "@clerk/nextjs"
 import "styles/tailwind.css"
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

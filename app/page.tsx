@@ -1,5 +1,5 @@
-import { Metadata } from "next"
 import { UserButton } from "@clerk/nextjs"
+import { Metadata } from "next"
 
 export const metadata: Metadata = {
   title: "登录 CryptoInsight Pro",
