@@ -7,6 +7,8 @@ export const env = createEnv({
       .enum(["true", "false"])
       .optional()
       .transform((value) => value === "true"),
+    IPINFO_API_KEY: z.string().optional(),
+    DEV_LOCATION: z.string().optional(),
   },
   client: {},
   runtimeEnv: {

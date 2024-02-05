@@ -1,22 +1,47 @@
 import { NextResponse } from "next/server"
 import type { NextRequest } from "next/server"
 
-export function middleware(request: NextRequest) {
-  // TODO: Feel free to remove this block
-  if (request.headers?.get("host")?.includes("next-enterprise.vercel.app")) {
-    return NextResponse.redirect("https://blazity.com/open-source/nextjs-enterprise-boilerplate", { status: 301 })
-  }
+interface IpInfo {
+  country: string
 }
 
-export const config = {
-  matcher: [
-    /*
-     * Match all request paths except for the ones starting with:
-     * - api (API routes)
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     */
-    "/((?!api|_next/static|_next/image|favicon.ico).*)",
-  ],
+export async function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl
+  if (pathname === "/china-specific-page") {
+    return NextResponse.next()
+  }
+
+  const devLocation = process.env.DEV_LOCATION
+  if (process.env.NODE_ENV === "development") {
+    if (devLocation === "CN") {
+      return NextResponse.redirect(
+        new URL("/china-specific-page", request.url)
+      )
+    } else {
+      return NextResponse.next()
+    }
+  }
+
+  const ip = request.headers.get("X-Forwarded-For") || ""
+
+  try {
+    const response = await fetch(
+      `https://ipinfo.io/${ip}?token=${process.env.IPINFO_API_KEY}`
+    )
+    if (!response.ok) {
+      throw new Error("Failed to fetch IP information")
+    }
+    const data = (await response.json()) as IpInfo
+    const country = data.country
+
+    if (country === "CN") {
+      return NextResponse.redirect(
+        new URL("/china-specific-page", request.url)
+      )
+    }
+    return NextResponse.next()
+  } catch (error) {
+    console.error("Error fetching IP information:", error)
+    return NextResponse.next()
+  }
 }
