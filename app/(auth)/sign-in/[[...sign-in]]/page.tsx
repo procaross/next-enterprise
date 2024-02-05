@@ -97,9 +97,9 @@ export default function Page() {
                 </div>
 
                 <Button variant="outline" className="mt-5">
-                  {
+                  {/* {
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  }
+                  } */}
                   登录
                 </Button>
               </div>
