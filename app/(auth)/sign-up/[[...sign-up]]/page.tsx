@@ -25,7 +25,7 @@ export default function Page() {
 
   return (
     <>
-      <div className="container relative flex flex-col items-center justify-center pt-20 lg:px-0">
+      <div className="container relative flex flex-col items-center justify-center lg:px-0">
         <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
           <div className="flex flex-col items-center space-y-2 text-center">
             <Image src="/images/auth-logo.png" alt="CryptoInsight Pro LOGO" width={253} height={120} />
@@ -44,7 +44,7 @@ export default function Page() {
           <div className="grid gap-6">
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="grid gap-2">
-                <div className="grid gap-1 py-2">
+                <div className="grid gap-3 py-2">
                   <Label htmlFor="email">电子邮箱</Label>
                   <Input
                     {...register("email")}
@@ -52,11 +52,12 @@ export default function Page() {
                       "focus-visible:ring-red-500": errors.email,
                     })}
                     placeholder="you@example.com"
+                    autoComplete="on"
                   />
                   {errors?.email && <p className="text-sm text-red-500">{errors.email.message}</p>}
                 </div>
 
-                <div className="grid gap-1 py-2">
+                <div className="grid gap-3 py-2">
                   <Label htmlFor="password">密码</Label>
                   <Input
                     {...register("password")}
@@ -65,12 +66,13 @@ export default function Page() {
                       "focus-visible:ring-red-500": errors.password,
                     })}
                     placeholder="Password"
+                    autoComplete="on"
                   />
                   {errors?.password && <p className="text-sm text-red-500">{errors.password.message}</p>}
                 </div>
 
-                <Button>
-                  {<Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                <Button variant="outline" className="mt-5">
+                  {/* {<Loader2 className="mr-2 h-4 w-4 animate-spin" />} */}
                   注册
                 </Button>
               </div>

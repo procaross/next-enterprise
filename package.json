@@ -23,9 +23,6 @@
     "coupling-graph": "npx madge --extensions js,jsx,ts,tsx,css,md,mdx ./ --exclude '.next|tailwind.config.js|reset.d.ts|prettier.config.js|postcss.config.js|playwright.config.ts|next.config.js|next-env.d.ts|instrumentation.ts|e2e/|README.md|.storybook/|.eslintrc.js' --image graph.svg"
   },
   "dependencies": {
-    "@clerk/localizations": "^1.26.13",
-    "@clerk/nextjs": "^4.29.5",
-    "@clerk/themes": "^1.7.9",
     "@hookform/resolvers": "^3.3.4",
     "@next/bundle-analyzer": "^14.0.3",
     "@radix-ui/react-accordion": "^1.1.2",
