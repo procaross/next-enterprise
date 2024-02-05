@@ -1,10 +1,10 @@
 "use client"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { ArrowRight, Loader2 } from "lucide-react"
-import Image from "next/image"
 import Link from "next/link"
 import { useForm } from "react-hook-form"
 // import { Icons } from "@/components/Icons/Icons"
+import AuthLogo from "@/components/temp-img/AuthLogo"
 import {
   Button,
   buttonVariants,
@@ -37,12 +37,7 @@ export default function Page() {
       <div className="container relative flex flex-col items-center justify-center lg:px-0">
         <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
           <div className="flex flex-col items-center space-y-2 text-center">
-            <Image
-              src="/images/auth-logo.png"
-              alt="CryptoInsight Pro LOGO"
-              width={253}
-              height={120}
-            />
+            <AuthLogo />
             <Link
               className={buttonVariants({
                 variant: "link",
