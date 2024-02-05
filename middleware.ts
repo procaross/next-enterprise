@@ -15,7 +15,7 @@ export async function middleware(request: NextRequest) {
   if (process.env.NODE_ENV === "development") {
     if (devLocation === "CN") {
       return NextResponse.redirect(
-        new URL("/china-specific-page", request.url)
+        new URL("china-specific-page", request.url)
       )
     } else {
       return NextResponse.next()
@@ -36,7 +36,7 @@ export async function middleware(request: NextRequest) {
 
     if (country === "CN") {
       return NextResponse.redirect(
-        new URL("/china-specific-page", request.url)
+        new URL("china-specific-page", request.url)
       )
     }
     return NextResponse.next()
