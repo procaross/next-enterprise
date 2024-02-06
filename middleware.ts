@@ -2,7 +2,7 @@
 import acceptLanguage from "accept-language"
 import { NextResponse } from "next/server"
 import { NextRequest } from "next/server"
-import { cookieName, fallbackLang, languages } from "./app/i18n/settings"
+import { fallbackLang, languages } from "./app/i18n/settings"
 
 interface IpInfo {
   country: string
@@ -11,6 +11,7 @@ interface IpInfo {
 acceptLanguage.languages(languages)
 
 const REGION_CHECK_COOKIE = "user_region"
+const LANG_CHECK_COOKIE = "user_lang"
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
@@ -30,15 +31,13 @@ export async function middleware(request: NextRequest) {
     // 生产环境通过cookie记录下用户第一次被检测的地区，减少API调用与pending时长
     if (process.env.NODE_ENV === "production") {
       const cookies = request.cookies
-      const currentRegionCookie = (cookies.get(REGION_CHECK_COOKIE) || "") as string
+      const currentRegionCookie = cookies.get(REGION_CHECK_COOKIE)
 
-      if (currentRegionCookie) {
-        if (currentRegionCookie === "CN") {
-          return NextResponse.redirect(new URL("/china-specific-page", request.url))
-        }
+      if (currentRegionCookie?.value === "CN") {
+        return NextResponse.redirect(new URL("/china-specific-page", request.url))
       } else {
-        const ip = request.headers.get("X-Forwarded-For") || ""
-
+        // const ip = request.headers.get("X-Forwarded-For") || ""
+        const ip = "223.18.223.119"
         try {
           const response = await fetch(
             `https://ipinfo.io/${ip}?token=${process.env.IPINFO_API_KEY}`
@@ -69,8 +68,8 @@ export async function middleware(request: NextRequest) {
 
   let lang: string | undefined
 
-  if (request.cookies.has(cookieName)) {
-    lang = acceptLanguage.get(request.cookies.get(cookieName)?.value || "") || ""
+  if (request.cookies.has(LANG_CHECK_COOKIE)) {
+    lang = acceptLanguage.get(request.cookies.get(LANG_CHECK_COOKIE)?.value || "") || ""
   }
 
   if (!lang) {
@@ -93,7 +92,7 @@ export async function middleware(request: NextRequest) {
     const langInReferer = languages.find((l) => refererUrl.pathname.startsWith(`/${l}`))
 
     if (langInReferer)
-      responseToReturn.cookies.set(cookieName, langInReferer, {
+      responseToReturn.cookies.set(LANG_CHECK_COOKIE, langInReferer, {
         httpOnly: true,
         secure: true,
         sameSite: "strict",
