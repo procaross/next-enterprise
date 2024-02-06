@@ -1,7 +1,7 @@
 // 引入相关模块和类型
 import acceptLanguage from "accept-language"
 import { NextResponse } from "next/server"
-import type { NextRequest } from "next/server"
+import { NextRequest } from "next/server"
 import { cookieName, fallbackLang, languages } from "./app/i18n/settings"
 import { decrypt, encrypt } from "./lib/utils"
 
@@ -15,6 +15,8 @@ const REGION_CHECK_COOKIE = "user_region"
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
+
+  const responseToReturn = NextResponse.next()
 
   // 限制特定地区访问
   if (!pathname.includes("/china-specific-page")) {
@@ -54,7 +56,7 @@ export async function middleware(request: NextRequest) {
           // 将地区信息加密后保存到cookie
           const encryptedRegion = encrypt(country)
 
-          NextResponse.next().cookies.set(REGION_CHECK_COOKIE, encryptedRegion, {
+          responseToReturn.cookies.set(REGION_CHECK_COOKIE, encryptedRegion, {
             httpOnly: true,
             secure: true,
             sameSite: "strict",
@@ -93,18 +95,12 @@ export async function middleware(request: NextRequest) {
 
   if (request.headers.has("referer")) {
     const refererUrl = new URL(request.headers.get("referer") || "")
-
     const langInReferer = languages.find((l) => refererUrl.pathname.startsWith(`/${l}`))
 
-    if (langInReferer)
-      NextResponse.next().cookies.set(cookieName, langInReferer, {
-        httpOnly: true,
-        secure: true,
-        sameSite: "strict",
-      })
+    if (langInReferer) responseToReturn.cookies.set(cookieName, langInReferer)
   }
 
-  return NextResponse.next()
+  return responseToReturn
 }
 
 export const config = {
