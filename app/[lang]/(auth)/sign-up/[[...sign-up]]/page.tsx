@@ -5,10 +5,7 @@ import Link from "next/link"
 import { useForm } from "react-hook-form"
 // import { Icons } from "@/components/Icons/Icons"
 import AuthLogo from "@/components/temp-img/AuthLogo"
-import {
-  Button,
-  buttonVariants,
-} from "@/components/ui/button"
+import { Button, buttonVariants } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { cn } from "@/lib/utils"
@@ -25,12 +22,8 @@ export default function Page() {
   } = useForm<TAuthCredentialsValidator>({
     resolver: zodResolver(AuthCredentialsValidator),
   })
-
-  const onSubmit = ({
-    email,
-    password,
-  }: TAuthCredentialsValidator) => {
-    // signIn({ email, password })
+  const onSubmit = ({ email, password }: TAuthCredentialsValidator) => {
+    // mutate({ email, password })
   }
 
   return (
@@ -44,9 +37,9 @@ export default function Page() {
                 variant: "link",
                 className: "gap-1.5",
               })}
-              href="/sign-up"
+              href="/sign-in"
             >
-              还没有账号？注册
+              已有账号？登录
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
@@ -59,16 +52,13 @@ export default function Page() {
                   <Input
                     {...register("email")}
                     className={cn({
-                      "focus-visible:ring-red-500":
-                        errors.email,
+                      "focus-visible:ring-red-500": errors.email,
                     })}
                     placeholder="you@example.com"
                     autoComplete="on"
                   />
                   {errors?.email && (
-                    <p className="text-sm text-red-500">
-                      {errors.email.message}
-                    </p>
+                    <p className="text-sm text-red-500">{errors.email.message}</p>
                   )}
                 </div>
 
@@ -78,24 +68,19 @@ export default function Page() {
                     {...register("password")}
                     type="password"
                     className={cn({
-                      "focus-visible:ring-red-500":
-                        errors.password,
+                      "focus-visible:ring-red-500": errors.password,
                     })}
                     placeholder="Password"
                     autoComplete="on"
                   />
                   {errors?.password && (
-                    <p className="text-sm text-red-500">
-                      {errors.password.message}
-                    </p>
+                    <p className="text-sm text-red-500">{errors.password.message}</p>
                   )}
                 </div>
 
                 <Button variant="outline" className="mt-5">
-                  {/* {
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  } */}
-                  登录
+                  {/* {<Loader2 className="mr-2 h-4 w-4 animate-spin" />} */}
+                  注册
                 </Button>
               </div>
             </form>
