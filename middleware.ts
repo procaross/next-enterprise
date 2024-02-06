@@ -36,8 +36,7 @@ export async function middleware(request: NextRequest) {
       if (currentRegionCookie?.value === "CN") {
         return NextResponse.redirect(new URL("/china-specific-page", request.url))
       } else {
-        // const ip = request.headers.get("X-Forwarded-For") || ""
-        const ip = "223.18.223.119"
+        const ip = request.headers.get("X-Forwarded-For") || ""
         try {
           const response = await fetch(
             `https://ipinfo.io/${ip}?token=${process.env.IPINFO_API_KEY}`
