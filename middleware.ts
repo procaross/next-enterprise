@@ -3,7 +3,6 @@ import acceptLanguage from "accept-language"
 import { NextResponse } from "next/server"
 import { NextRequest } from "next/server"
 import { cookieName, fallbackLang, languages } from "./app/i18n/settings"
-import { decrypt, encrypt } from "./lib/utils"
 
 interface IpInfo {
   country: string
@@ -20,7 +19,7 @@ export async function middleware(request: NextRequest) {
 
   // 限制特定地区访问
   if (!pathname.includes("/china-specific-page")) {
-    // 开发测试环境中，为环境变量中设定的地区
+    // 开发测试环境中，为环境变量中设定的地区（暂无cookie逻辑）
     if (process.env.NODE_ENV !== "production") {
       const devLocation = process.env.DEV_LOCATION
       if (devLocation === "CN") {
@@ -34,8 +33,7 @@ export async function middleware(request: NextRequest) {
       const currentRegionCookie = (cookies.get(REGION_CHECK_COOKIE) || "") as string
 
       if (currentRegionCookie) {
-        const region = decrypt(currentRegionCookie)
-        if (region === "CN") {
+        if (currentRegionCookie === "CN") {
           return NextResponse.redirect(new URL("/china-specific-page", request.url))
         }
       } else {
@@ -53,10 +51,7 @@ export async function middleware(request: NextRequest) {
           const data: IpInfo = (await response.json()) as IpInfo
           const country = data.country
 
-          // 将地区信息加密后保存到cookie
-          const encryptedRegion = encrypt(country)
-
-          responseToReturn.cookies.set(REGION_CHECK_COOKIE, encryptedRegion, {
+          responseToReturn.cookies.set(REGION_CHECK_COOKIE, country, {
             httpOnly: true,
             secure: true,
             sameSite: "strict",
@@ -97,7 +92,12 @@ export async function middleware(request: NextRequest) {
     const refererUrl = new URL(request.headers.get("referer") || "")
     const langInReferer = languages.find((l) => refererUrl.pathname.startsWith(`/${l}`))
 
-    if (langInReferer) responseToReturn.cookies.set(cookieName, langInReferer)
+    if (langInReferer)
+      responseToReturn.cookies.set(cookieName, langInReferer, {
+        httpOnly: true,
+        secure: true,
+        sameSite: "strict",
+      })
   }
 
   return responseToReturn
