@@ -1,4 +1,11 @@
 export default {
+  metaData: {
+    authTitle: "Authenticate CryptoInsight Pro",
+    homePageTitle: "Chain to the Future | CryptoInsight Pro",
+    homePageDescription: "Chain to the Future，CryptoInsight Pro",
+    authDescription: "Chain to the Future，CryptoInsight Pro",
+    appUnavailable: "CryptoInsight Pro Unavailable",
+  },
   page: {
     auth: {
       alreadyHaveAccount: "Already have an account? Sign in",

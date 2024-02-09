@@ -1,8 +1,13 @@
 import { Metadata } from "next"
+import { getScopedI18n } from "@/locales/server"
 
-export const metadata: Metadata = {
-  title: "CryptoInsight Pro 链见未来",
-  description: "链见未来，CryptoInsight Pro",
+export async function generateMetadata(): Promise<Metadata> {
+  const scopedTMetaData = await getScopedI18n("metaData")
+
+  return {
+    title: scopedTMetaData("homePageTitle"),
+    description: scopedTMetaData("homePageDescription"),
+  }
 }
 
 export default function Home() {

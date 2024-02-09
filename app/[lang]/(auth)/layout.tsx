@@ -1,11 +1,13 @@
 import type { Metadata } from "next"
 import React from "react"
-import { getCurrentLocale } from "@/locales/server"
+import { getCurrentLocale, getScopedI18n } from "@/locales/server"
 import { Provider } from "../provider"
 
-export const metadata: Metadata = {
-  title: "登录 CryptoInsight Pro",
-  description: "链见未来，CryptoInsight Pro",
+export async function generateMetadata(): Promise<Metadata> {
+  const scopedTMetaData = await getScopedI18n("metaData")
+  return {
+    title: scopedTMetaData("authTitle"),
+  }
 }
 
 export default function AuthLayout({ children }: { children: React.ReactNode }) {

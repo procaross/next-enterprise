@@ -1,9 +1,12 @@
-import type { Metadata } from "next"
+import { Metadata } from "next"
 import React from "react"
+import { getScopedI18n } from "@/locales/server"
 
-export const metadata: Metadata = {
-  title: "CryptoInsight Pro 不可用",
-  description: "链见未来，CryptoInsight Pro",
+export async function generateMetadata(): Promise<Metadata> {
+  const scopedTMetaData = await getScopedI18n("metaData")
+  return {
+    title: scopedTMetaData("appUnavailable"),
+  }
 }
 
 export default function SRegionLayout({ children }: { children: React.ReactNode }) {

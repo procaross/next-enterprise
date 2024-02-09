@@ -1,4 +1,11 @@
 export default {
+  metaData: {
+    authTitle: "认证 CryptoInsight Pro",
+    homePageTitle: "链见未来 | CryptoInsight Pro",
+    homePageDescription: "链见未来，CryptoInsight Pro",
+    authDescription: "链见未来，CryptoInsight Pro",
+    appUnavailable: "CryptoInsight Pro 暂不可用",
+  },
   page: {
     auth: {
       alreadyHaveAccount: "已有账号？登录",
