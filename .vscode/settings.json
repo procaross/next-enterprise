@@ -1,8 +1,16 @@
 {
   "tailwindCSS.experimental.classRegex": [
-    ["cva(?:<[^>]*>)?(([^)]*))", "[\"'`]([^\"'`]*).*?[\"'`]", "(?:twMerge|twJoin)\\(([^\\);]*)[\\);]"]
+    [
+      "cva(?:<[^>]*>)?(([^)]*))",
+      "[\"'`]([^\"'`]*).*?[\"'`]",
+      "(?:twMerge|twJoin)\\(([^\\);]*)[\\);]"
+    ]
   ],
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
-  }
+  },
+  "i18n-ally.localesPaths": ["./locales"],
+  "i18n-ally.defaultNamespace": "page",
+  "i18n-ally.sourceLanguage": "english",
+  "i18n-ally.keystyle": "nested"
 }

@@ -1,21 +1,12 @@
 import "styles/tailwind.css"
-import { dir } from "i18next"
-import { languages } from "../i18n/settings"
-
-type StaticParams = { lang: string }[]
-
-export async function generateStaticParams(): Promise<StaticParams> {
-  return languages.map((lang) => ({ lang }))
-}
 
 interface RootLayoutProps {
   children: React.ReactNode
-  params: { lang: string }
 }
 
-const RootLayout: React.FC<RootLayoutProps> = ({ children, params: { lang } }) => {
+const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
   return (
-    <html lang={lang} dir={dir(lang)}>
+    <html lang="zh-CN">
       <head />
       <body>{children}</body>
     </html>

@@ -13,8 +13,11 @@ import {
   AuthCredentialsValidator,
   TAuthCredentialsValidator,
 } from "@/lib/validators/account-credentials-validator"
+import { useScopedI18n } from "@/locales/client"
 
 export default function Page() {
+  const scopedTPage = useScopedI18n("page.auth")
+  const scopedTForm = useScopedI18n("form.validation")
   const {
     register,
     handleSubmit,
@@ -39,7 +42,7 @@ export default function Page() {
               })}
               href="/sign-in"
             >
-              已有账号？登录
+              {scopedTPage("alreadyHaveAccount")}
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
@@ -48,39 +51,41 @@ export default function Page() {
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="grid gap-2">
                 <div className="grid gap-3 py-2">
-                  <Label htmlFor="email">电子邮箱</Label>
+                  <Label htmlFor="email">{scopedTPage("emailLabel")}</Label>
                   <Input
                     {...register("email")}
                     className={cn({
                       "focus-visible:ring-red-500": errors.email,
                     })}
-                    placeholder="you@example.com"
+                    placeholder={scopedTPage("emailPlaceholder")}
                     autoComplete="on"
                   />
                   {errors?.email && (
-                    <p className="text-sm text-red-500">{errors.email.message}</p>
+                    <p className="text-sm text-red-500">{scopedTForm("emailInvalid")}</p>
                   )}
                 </div>
 
                 <div className="grid gap-3 py-2">
-                  <Label htmlFor="password">密码</Label>
+                  <Label htmlFor="password">{scopedTPage("passwordLabel")}</Label>
                   <Input
                     {...register("password")}
                     type="password"
                     className={cn({
                       "focus-visible:ring-red-500": errors.password,
                     })}
-                    placeholder="Password"
+                    placeholder={scopedTPage("passwordPlaceholder")}
                     autoComplete="on"
                   />
                   {errors?.password && (
-                    <p className="text-sm text-red-500">{errors.password.message}</p>
+                    <p className="text-sm text-red-500">
+                      {scopedTForm("passwordMinLength")}
+                    </p>
                   )}
                 </div>
 
                 <Button variant="outline" className="mt-5">
                   {/* {<Loader2 className="mr-2 h-4 w-4 animate-spin" />} */}
-                  注册
+                  {scopedTPage("registerButton")}
                 </Button>
               </div>
             </form>

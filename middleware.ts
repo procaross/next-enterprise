@@ -1,104 +1,94 @@
-// 引入相关模块和类型
-import acceptLanguage from "accept-language"
-import { NextResponse } from "next/server"
+// import { NextResponse } from "next/server"
 import { NextRequest } from "next/server"
-import { fallbackLang, languages } from "./app/i18n/settings"
+import { createI18nMiddleware } from "next-international/middleware"
 
-interface IpInfo {
-  country: string
-}
+// interface IpInfo {
+//   country: string
+// }
 
-acceptLanguage.languages(languages)
+const locales = ["en", "zh-CN"]
 
-const REGION_CHECK_COOKIE = "user_region"
-const LANG_CHECK_COOKIE = "user_lang"
-
-export async function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl
-
-  const responseToReturn = NextResponse.next()
-
-  // 限制特定地区访问
-  if (!pathname.includes("/china-specific-page")) {
-    // 开发测试环境中，为环境变量中设定的地区（暂无cookie逻辑）
-    if (process.env.NODE_ENV !== "production") {
-      const devLocation = process.env.DEV_LOCATION
-      if (devLocation === "CN") {
-        return NextResponse.redirect(new URL("/china-specific-page", request.url))
-      }
-    }
-
-    // 生产环境通过cookie记录下用户第一次被检测的地区，减少API调用与pending时长
-    if (process.env.NODE_ENV === "production") {
-      const cookies = request.cookies
-      const currentRegionCookie = cookies.get(REGION_CHECK_COOKIE)
-
-      if (currentRegionCookie?.value === "CN") {
-        return NextResponse.redirect(new URL("/china-specific-page", request.url))
-      } else {
-        const ip = request.headers.get("X-Forwarded-For") || ""
-        try {
-          const response = await fetch(
-            `https://ipinfo.io/${ip}?token=${process.env.IPINFO_API_KEY}`
-          )
-
-          if (!response.ok) {
-            throw new Error("Failed to fetch IP information")
+const I18nMiddleware = createI18nMiddleware({
+  locales,
+  defaultLocale: "en",
+  resolveLocaleFromRequest: (request: NextRequest) => {
+    const acceptLanguage = request.headers.get("Accept-Language")
+    if (acceptLanguage) {
+      const preferredLanguages = acceptLanguage
+        .split(",")
+        .map((lang) => {
+          const parts = lang.split(";q=")
+          return {
+            code: parts[0]!.trim(),
+            quality: parts.length > 1 ? Number(parts[1]) : 1,
           }
+        })
+        .sort((a, b) => b.quality - a.quality)
 
-          const data: IpInfo = (await response.json()) as IpInfo
-          const country = data.country
-
-          responseToReturn.cookies.set(REGION_CHECK_COOKIE, country, {
-            httpOnly: true,
-            secure: true,
-            sameSite: "strict",
-          })
-
-          if (country === "CN") {
-            return NextResponse.redirect(new URL("/china-specific-page", request.url))
-          }
-        } catch (error) {
-          console.error("Error fetching IP information:", error)
+      for (const lang of preferredLanguages) {
+        if (locales.includes(lang.code)) {
+          return lang.code
         }
       }
     }
-  }
+    // 没找到支持列表中的语言或请求头不存在
+    return null
+  },
+})
 
-  let lang: string | undefined
+// const REGION_CHECK_COOKIE = "user_region"
 
-  if (request.cookies.has(LANG_CHECK_COOKIE)) {
-    lang = acceptLanguage.get(request.cookies.get(LANG_CHECK_COOKIE)?.value || "") || ""
-  }
+export async function middleware(request: NextRequest) {
+  return I18nMiddleware(request)
 
-  if (!lang) {
-    lang = acceptLanguage.get(request.headers.get("Accept-Language") || "") || ""
-  }
+  // TODO: 限制特定地区访问（如何将I18nMiddleware返回的response和下面的response结合）
+  // const { pathname } = request.nextUrl
+  // const responseToReturn = NextResponse.next()
+  // if (!pathname.includes("/china-specific-page")) {
+  //   // 开发测试环境中，为环境变量中设定的地区（暂无cookie逻辑）
+  //   if (process.env.NODE_ENV !== "production") {
+  //     const devLocation = process.env.DEV_LOCATION
+  //     if (devLocation === "CN") {
+  //       return NextResponse.redirect(new URL("/china-specific-page", request.url))
+  //     }
+  //   }
 
-  if (!lang) lang = fallbackLang
+  //   // 生产环境通过cookie记录下用户第一次被检测的地区，减少API调用与pending时长
+  //   if (process.env.NODE_ENV === "production") {
+  //     const cookies = request.cookies
+  //     const currentRegionCookie = cookies.get(REGION_CHECK_COOKIE)
 
-  if (
-    !languages.some((loc) => request.nextUrl.pathname.startsWith(`/${loc}`)) &&
-    !request.nextUrl.pathname.startsWith("/_next")
-  ) {
-    return NextResponse.redirect(
-      new URL(`/${lang}${request.nextUrl.pathname}`, request.url)
-    )
-  }
+  //     if (currentRegionCookie?.value === "CN") {
+  //       return NextResponse.redirect(new URL("/china-specific-page", request.url))
+  //     } else {
+  //       const ip = request.headers.get("X-Forwarded-For") || ""
+  //       try {
+  //         const response = await fetch(
+  //           `https://ipinfo.io/${ip}?token=${process.env.IPINFO_API_KEY}`
+  //         )
 
-  if (request.headers.has("referer")) {
-    const refererUrl = new URL(request.headers.get("referer") || "")
-    const langInReferer = languages.find((l) => refererUrl.pathname.startsWith(`/${l}`))
+  //         if (!response.ok) {
+  //           throw new Error("Failed to fetch IP information")
+  //         }
 
-    if (langInReferer)
-      responseToReturn.cookies.set(LANG_CHECK_COOKIE, langInReferer, {
-        httpOnly: true,
-        secure: true,
-        sameSite: "strict",
-      })
-  }
+  //         const data: IpInfo = (await response.json()) as IpInfo
+  //         const country = data.country
 
-  return responseToReturn
+  //         responseToReturn.cookies.set(REGION_CHECK_COOKIE, country, {
+  //           httpOnly: true,
+  //           secure: true,
+  //           sameSite: "strict",
+  //         })
+
+  //         if (country === "CN") {
+  //           return NextResponse.redirect(new URL("/china-specific-page", request.url))
+  //         }
+  //       } catch (error) {
+  //         console.error("Error fetching IP information:", error)
+  //       }
+  //     }
+  //   }
+  // }
 }
 
 export const config = {
