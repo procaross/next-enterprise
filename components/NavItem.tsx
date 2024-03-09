@@ -62,7 +62,9 @@ const NavItem = ({
           <div className='relative bg-white'>
             <div className='mx-auto max-w-7xl px-8'>
               {category.label === 'Popular Currencies' ? (
-                <MarketWidget locale={locale}/>
+                <div className="pb-8">
+                  <MarketWidget locale={locale}/>
+                </div>
               ) : (
                 <div className='grid grid-cols-4 gap-x-8 gap-y-10 py-16'>
                   <div className='col-span-4 col-start-1 grid grid-cols-3 gap-x-8'>
