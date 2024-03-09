@@ -1,0 +1,1 @@
+export type SupportedLocales = "en" | "zh_CN";

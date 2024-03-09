@@ -3127,7 +3127,7 @@
 
 "@radix-ui/react-scroll-area@^1.0.5":
   version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@radix-ui/react-scroll-area/-/react-scroll-area-1.0.5.tgz#01160c6893f24a2ddb5aa399ae5b3ba84ad4d3cc"
+  resolved "https://registry.npmmirror.com/@radix-ui/react-scroll-area/-/react-scroll-area-1.0.5.tgz#01160c6893f24a2ddb5aa399ae5b3ba84ad4d3cc"
   integrity sha512-b6PAgH4GQf9QEn8zbT2XUHpW5z8BzqEc7Kl11TwDrvuTrxlkcjTD5qa/bxgKr+nmuXKu4L/W5UZ4mlP/VG/5Gw==
   dependencies:
     "@babel/runtime" "^7.13.10"
@@ -13614,6 +13614,11 @@ react-style-singleton@^2.2.1:
     get-nonce "^1.0.0"
     invariant "^2.2.4"
     tslib "^2.0.0"
+
+react-ts-tradingview-widgets@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.npmmirror.com/react-ts-tradingview-widgets/-/react-ts-tradingview-widgets-1.2.4.tgz#7156eaf0cbe8344d1a8e82c39b2649e1d6adc533"
+  integrity sha512-Ygx9mxPi5JyOex64HpHFLn3hfJj/AeKau1S9Bok9AAggKH6j8dcYjNuECpRQ9olb612SFIZNzyv4+L4dyNVdGg==
 
 react@^18.2.0:
   version "18.2.0"
