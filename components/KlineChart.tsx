@@ -11,7 +11,7 @@ const AdvancedRealTimeChartNoSSR = dynamic(
 
 export default function KlineChart(props: { locale: SupportedLocales}) {
   return (
-    <div className="h-[92vh]">
+    <div className="h-[92vh] overflow-hidden">
       <AdvancedRealTimeChartNoSSR theme="light" autosize symbol="COINBASE:ETHUSD" interval="1" locale={props.locale} />
     </div>
   );

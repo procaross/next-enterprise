@@ -20,7 +20,7 @@ export default function Home() {
   const locale = localeMap[getCurrentLocale()] || "en";
 
   return (
-    <div className="h-screen">
+    <div className="overflow-hidden">
       <KlineChart locale={locale}/>
     </div>
   )
