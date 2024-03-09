@@ -4,8 +4,15 @@ import { Icons } from './Icons/Icons'
 import NavItems from './NavItems'
 import { buttonVariants } from './ui/button'
 import MobileNav from './MobileNav'
+import { SupportedLocales } from "@/types/i18n";
+import { getCurrentLocale } from "@/locales/server";
 
 const Navbar = async () => {
+  const localeMap: { [key: string]: SupportedLocales } = {
+    "zh-CN": "zh_CN",
+    "en": "en",
+  };
+  const locale = localeMap[getCurrentLocale()] || "en";
   return (
     <div className='bg-white z-50 top-0 inset-x-0 h-16'>
       <header className='relative bg-white'>
@@ -21,7 +28,7 @@ const Navbar = async () => {
               </div>
 
               <div className='hidden z-50 lg:ml-8 lg:block lg:self-stretch'>
-                <NavItems />
+                <NavItems locale={locale}/>
               </div>
 
               <div className='ml-auto flex items-center'>

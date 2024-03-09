@@ -4,8 +4,9 @@ import { CRYPTO_CATEGORIES } from '@/config'
 import { useOnClickOutside } from '@/hooks/use-on-click-outside'
 import { useEffect, useRef, useState } from 'react'
 import NavItem from './NavItem'
+import { SupportedLocales } from "@/types/i18n";
 
-const NavItems = () => {
+const NavItems = (props: { locale: SupportedLocales}) => {
   const [activeIndex, setActiveIndex] = useState<
     null | number
   >(null)
@@ -53,6 +54,7 @@ const NavItems = () => {
             isOpen={isOpen}
             key={category.value}
             isAnyOpen={isAnyOpen}
+            locale={props.locale}
           />
         )
       })}
