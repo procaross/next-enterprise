@@ -7,6 +7,8 @@ import Link from 'next/link'
 import MarketWidget from './MarketWidget'
 import { SupportedLocales } from "@/types/i18n";
 import EthereumAnalysisCard from "@/components/EthereumAnalysis";
+import EthereumAnalysisSkeleton from "@/components/EthereumAnalysisSkeleton";
+import { Suspense } from "react";
 type Category = (typeof CRYPTO_CATEGORIES)[number]
 
 interface NavItemProps {
@@ -68,7 +70,10 @@ const NavItem = ({
                 </div>
               ) : category.label === 'Crypto Analysis' ? (
                 <div className="pb-8">
-                  <EthereumAnalysisCard locale={locale}/>
+                  <Suspense fallback={<EthereumAnalysisSkeleton/>}>
+                    <EthereumAnalysisCard locale={locale}/>
+                  </Suspense>
+
                 </div>
               ) : (
                 <></>

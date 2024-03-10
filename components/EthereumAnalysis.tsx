@@ -47,7 +47,7 @@ const ethereumAnalysisData = {
   }
 };
 
-function EthereumAnalysis(props: { locale: SupportedLocales}) {
+async function EthereumAnalysis(props: { locale: SupportedLocales}) {
   const { future_prediction, market_sentiment_analysis, price_alert_points, technical_analysis, trading_alert } = ethereumAnalysisData;
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-4">
