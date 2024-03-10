@@ -1,5 +1,10 @@
 import React from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from '@/components/ui/button'
+import { IdCardIcon } from '@radix-ui/react-icons'
+import TechnicalAnalysis from "@/components/TechnicalAnalysis";
+import { SupportedLocales } from "@/types/i18n";
+import Link from 'next/link';
 
 const ethereumAnalysisData = {
   future_prediction: {
@@ -42,9 +47,8 @@ const ethereumAnalysisData = {
   }
 };
 
-function EthereumAnalysis() {
+function EthereumAnalysis(props: { locale: SupportedLocales}) {
   const { future_prediction, market_sentiment_analysis, price_alert_points, technical_analysis, trading_alert } = ethereumAnalysisData;
-
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-4">
       <Card className="col-span-1 max-w-sm">
@@ -61,6 +65,13 @@ function EthereumAnalysis() {
           <p className="font-bold text-8xl">{market_sentiment_analysis.score}</p>
           <CardDescription className="pt-4 pl-1">{market_sentiment_analysis.reason}</CardDescription>
         </CardContent>
+        <CardFooter>
+          <Link href="/news" passHref className="w-full">
+            <Button className="w-full">
+              <IdCardIcon className="mr-2 h-4 w-4" /> 了解更多
+            </Button>
+          </Link>
+        </CardFooter>
       </Card>
 
       <Card className="col-span-1 max-w-sm">
@@ -81,6 +92,9 @@ function EthereumAnalysis() {
         </CardContent>
       </Card>
 
+      <Card className="col-span-1 max-w-sm">
+        <TechnicalAnalysis locale={props.locale}/>
+      </Card>
       <Card className="col-span-1 max-w-sm">
         <CardHeader>
           <CardTitle>技术分析</CardTitle>

@@ -2,7 +2,6 @@ import { Metadata } from "next"
 import { getCurrentLocale, getScopedI18n } from "@/locales/server"
 import KlineChart from "@/components/KlineChart";
 import { SupportedLocales } from '@/types/i18n'
-
 export async function generateMetadata(): Promise<Metadata> {
   const scopedTMetaData = await getScopedI18n("metaData")
 

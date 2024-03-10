@@ -68,7 +68,7 @@ const NavItem = ({
                 </div>
               ) : category.label === 'Crypto Analysis' ? (
                 <div className="pb-8">
-                  <EthereumAnalysisCard/>
+                  <EthereumAnalysisCard locale={locale}/>
                 </div>
               ) : (
                 <></>
