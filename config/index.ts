@@ -2,44 +2,10 @@ export const CRYPTO_CATEGORIES = [
   {
     label: 'Popular Currencies',
     value: 'popular_currencies',
-    featured: [
-      {
-        name: 'Bitcoin',
-        href: '/currencies/bitcoin',
-        imageSrc: '/nav/currencies/bitcoin.jpg',
-      },
-      {
-        name: 'Ethereum',
-        href: '/currencies/ethereum',
-        imageSrc: '/nav/currencies/ethereum.jpg',
-      },
-      {
-        name: 'Cardano',
-        href: '/currencies/cardano',
-        imageSrc: '/nav/currencies/cardano.jpg',
-      },
-    ],
   },
   {
-    label: 'DeFi Tokens',
-    value: 'defi_tokens',
-    featured: [
-      {
-        name: 'Uniswap',
-        href: '/tokens/uniswap',
-        imageSrc: '/nav/tokens/uniswap.jpg',
-      },
-      {
-        name: 'Chainlink',
-        href: '/tokens/chainlink',
-        imageSrc: '/nav/tokens/chainlink.jpg',
-      },
-      {
-        name: 'Aave',
-        href: '/tokens/aave',
-        imageSrc: '/nav/tokens/aave.jpg',
-      },
-    ],
+    label: 'Crypto Analysis',
+    value: 'crypto_analysis',
   },
   {
     label: 'NFT & Metaverses',
