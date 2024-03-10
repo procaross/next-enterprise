@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from '@/components/ui/button'
 import { IdCardIcon } from '@radix-ui/react-icons'
@@ -47,8 +47,16 @@ const ethereumAnalysisData = {
   }
 };
 
+async function fetchEthereumAnalysisData() {
+  await new Promise(resolve => setTimeout(resolve, 1000));
+  const data = ethereumAnalysisData;
+
+  return data;
+}
+
 async function EthereumAnalysis(props: { locale: SupportedLocales}) {
-  const { future_prediction, market_sentiment_analysis, price_alert_points, technical_analysis, trading_alert } = ethereumAnalysisData;
+  const AnalysisData = await fetchEthereumAnalysisData()
+  const { future_prediction, market_sentiment_analysis, price_alert_points, technical_analysis, trading_alert } = AnalysisData;
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-4">
       <Card className="col-span-1 max-w-sm">
