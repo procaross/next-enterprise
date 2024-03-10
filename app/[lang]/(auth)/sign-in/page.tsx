@@ -4,7 +4,7 @@ import { ArrowRight, Loader2 } from "lucide-react"
 import Link from "next/link"
 import { useForm } from "react-hook-form"
 // import { Icons } from "@/components/Icons/Icons"
-import AuthLogo from "@/components/temp-img/AuthLogo"
+import { Icons } from "@/components/Icons/Icons"
 import { Button, buttonVariants } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -35,7 +35,7 @@ export default function Page() {
       <div className="container relative flex flex-col items-center justify-center lg:px-0">
         <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
           <div className="flex flex-col items-center space-y-2 text-center">
-            <AuthLogo />
+            <Icons.authLogo />
             <Link
               className={buttonVariants({
                 variant: "link",
