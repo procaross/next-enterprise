@@ -18,12 +18,13 @@ const Navbar = async () => {
       <header className='relative bg-white'>
         <MaxWidthWrapper>
           <div>
-            <div className='flex h-16 items-center'>
-              <MobileNav />
+            <div className='flex h-16 items-center justify-between lg:justify-start'>
 
-              <div className='ml-4 flex lg:ml-0'>
+              <MobileNav/>
+
+              <div className='flex-1 flex justify-center lg:justify-start lg:ml-10'>
                 <Link href='/'>
-                  <Icons.logo className='h-14 w-14' />
+                  <Icons.logo className='h-14 w-14'/>
                 </Link>
               </div>
 
@@ -33,13 +34,11 @@ const Navbar = async () => {
 
               <div className='ml-auto flex items-center'>
                 <div className='hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6'>
-                    <Link
-                      href='/sign-in'
-                      className={buttonVariants({
-                        variant: 'ghost',
-                      })}>
-                      登录
-                    </Link>
+                  <Link href='/sign-in' className={buttonVariants({
+                    variant: 'ghost',
+                  })}>
+                    登录
+                  </Link>
                 </div>
               </div>
             </div>
