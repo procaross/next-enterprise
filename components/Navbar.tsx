@@ -33,11 +33,11 @@ const Navbar = async () => {
               </div>
 
               <div className='ml-auto flex items-center'>
-                <div className='hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6'>
+                <div className='hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6 lg:ml-10'>
                   <Link href='/sign-in' className={buttonVariants({
                     variant: 'ghost',
                   })}>
-                    登录
+                    Log In
                   </Link>
                 </div>
               </div>

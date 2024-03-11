@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { Select, SelectContent, SelectItem, SelectTrigger } from "@/components/ui/select";
-import TwitterFeedSkeleton from './TwitterFeedSkeleton';
+import TwitterFeedSkeleton from './skeleton/TwitterFeedSkeleton';
 
 interface Tweet {
   id: number;
