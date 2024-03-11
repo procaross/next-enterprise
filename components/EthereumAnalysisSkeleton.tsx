@@ -11,7 +11,9 @@ function EthereumAnalysisSkeleton() {
         </CardHeader>
         <CardContent>
           <div className="flex items-center space-x-2">
+
             <div className="space-y-2">
+              <Skeleton className="h-[125px] w-[150px] rounded-xl" />
               <Skeleton className="h-4 w-[220px]" />
               <Skeleton className="h-4 w-[170px]" />
               <Skeleton className="h-4 w-[240px]" />
