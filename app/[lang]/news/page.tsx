@@ -1,9 +1,9 @@
 import React from 'react';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import CryptoTimeline from "@/components/CryptoTimeline";
 import TwitterFeed from "@/components/TwitterFeed";
-import { SupportedLocales } from "@/types/i18n";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getCurrentLocale } from "@/locales/server";
+import { SupportedLocales } from "@/types/i18n";
 
 export default function Page() {
   const localeMap: { [key: string]: SupportedLocales } = {
