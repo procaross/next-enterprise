@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import CryptoTimeline from "@/components/CryptoTimeline";
 import TwitterFeed from "@/components/TwitterFeed";
 import { SupportedLocales } from "@/types/i18n";
