@@ -1,10 +1,12 @@
-import React from 'react';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from '@/components/ui/button'
 import { IdCardIcon } from '@radix-ui/react-icons'
-import TechnicalAnalysis from "@/components/TechnicalAnalysis";
-import { SupportedLocales } from "@/types/i18n";
 import Link from 'next/link';
+import React from 'react';
+import TechnicalAnalysis from "@/components/TechnicalAnalysis";
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+
+import { SupportedLocales } from "@/types/i18n";
+
 
 interface FuturePrediction {
   next_day: string;
@@ -41,27 +43,42 @@ interface EthereumAnalysisData {
   price_alert_points: PriceAlertPoint[];
   technical_analysis: string;
   trading_alert: TradingAlert;
+  timestamp: number;
+  is_latest: boolean;
+  user_points: number;
 }
 
 async function fetchEthereumAnalysisData(): Promise<EthereumAnalysisData> {
-  const res = await fetch('http://127.0.0.1:5000/get-analysis');
+  const accessToken = localStorage.getItem("access_token");
+  const headers = new Headers();
+
+  if (accessToken) {
+    headers.append("Authorization", `Bearer ${accessToken}`);
+  }
+
+  const res = await fetch('http://127.0.0.1:5000/get-analysis', { headers });
+
   if (!res.ok) {
     throw new Error('Failed to fetch data');
   }
+
   return res.json() as Promise<EthereumAnalysisData>;
 }
 
 async function EthereumAnalysis(props: { locale: SupportedLocales}) {
   const AnalysisData = await fetchEthereumAnalysisData();
-  const { future_prediction, market_sentiment_analysis, price_alert_points, technical_analysis, trading_alert } = AnalysisData;
+  const { future_prediction, market_sentiment_analysis,
+    price_alert_points, technical_analysis, trading_alert, timestamp, is_latest, user_points } = AnalysisData;
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-4">
       <Card className="col-span-1 max-w-sm">
         <CardHeader>
           <CardTitle>
             <div className="flex items-center space-x-2">
-              <span className={`flex h-3 w-3 rounded-full ${market_sentiment_analysis.score > 50 ? 'bg-green-500' : 'bg-red-500'}`} />
-              <span className={`${market_sentiment_analysis.score > 50 ? 'text-green-500' : 'text-red-500'}`}>{market_sentiment_analysis.sentiment}</span>
+              <span className={`flex h-3 w-3 rounded-full ${market_sentiment_analysis.score > 50 ? 'bg-green-500' :
+                'bg-red-500'}`}/>
+              <span className={`${market_sentiment_analysis.score > 50 ? 'text-green-500' :
+                'text-red-500'}`}>{market_sentiment_analysis.sentiment}</span>
               <p>市场情绪分析</p>
             </div>
           </CardTitle>
@@ -73,7 +90,7 @@ async function EthereumAnalysis(props: { locale: SupportedLocales}) {
         <CardFooter>
           <Link href="/news" passHref className="w-full">
             <Button className="w-full">
-              <IdCardIcon className="mr-2 h-4 w-4" /> 了解更多
+              <IdCardIcon className="mr-2 h-4 w-4"/> 了解更多
             </Button>
           </Link>
         </CardFooter>
@@ -87,7 +104,8 @@ async function EthereumAnalysis(props: { locale: SupportedLocales}) {
           {price_alert_points.map((alert, index) => (
             <div key={index} className="mb-4 last:mb-0">
               <div className="flex items-center space-x-2">
-                <span className={`flex h-3 w-3 rounded-full ${alert.type === 'breakthrough' ? 'bg-green-500' : 'bg-red-500'}`} />
+                <span className={`flex h-3 w-3 rounded-full ${alert.type === 'breakthrough' ? 'bg-green-500' :
+                  'bg-red-500'}`}/>
                 <p>{alert.alert_point} USDT</p>
               </div>
               <p className="text-muted-foreground p-1">{alert.reason}</p>
@@ -135,6 +153,13 @@ async function EthereumAnalysis(props: { locale: SupportedLocales}) {
           </div>
         </CardContent>
       </Card>
+      <div className="mb-4">
+        <p>剩余分析次数: {user_points}</p>
+        <p>报告生成时间: {new Date(timestamp * 1000).toLocaleString()}</p>
+      </div>
+      { !is_latest && (
+        <Button onClick={() => fetchEthereumAnalysisData()}>获取最新报告</Button>
+      )}
     </div>
   );
 }
