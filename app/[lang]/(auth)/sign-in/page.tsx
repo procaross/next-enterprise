@@ -1,13 +1,14 @@
 "use client"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { ArrowRight, Loader2 } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 import Link from "next/link"
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form"
-// import { Icons } from "@/components/Icons/Icons"
 import { Icons } from "@/components/Icons/Icons"
 import { Button, buttonVariants } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { useAuth } from "@/hooks/use-auth";
 import { cn } from "@/lib/utils"
 import {
   AuthCredentialsValidator,
@@ -15,9 +16,17 @@ import {
 } from "@/lib/validators/account-credentials-validator"
 import { useScopedI18n } from "@/locales/client"
 
+interface LoginResponse {
+  access_token: string
+  refresh_token: string
+}
+
 export default function Page() {
   const scopedTPage = useScopedI18n("page.auth")
   const scopedTForm = useScopedI18n("form.validation")
+  const { login } = useAuth()
+  const router = useRouter()
+
   const {
     register,
     handleSubmit,
@@ -26,9 +35,28 @@ export default function Page() {
     resolver: zodResolver(AuthCredentialsValidator),
   })
 
-  const onSubmit = ({ email, password }: TAuthCredentialsValidator) => {
-    // signIn({ email, password })
-  }
+  const onSubmit = async ({ email, password }: TAuthCredentialsValidator) => {
+    try {
+      const response = await fetch("http://127.0.0.1:5000/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (response.ok) {
+        const data = await response.json() as LoginResponse;
+        const { access_token, refresh_token } = data;
+        login(access_token, refresh_token);
+        await router.push("/");
+      } else {
+        console.error("Login failed:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Login failed:", error);
+    }
+  };
 
   return (
     <>
