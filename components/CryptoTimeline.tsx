@@ -11,7 +11,7 @@ const TimelineNoSSR = dynamic(
 
 export default function CryptoTimeline(props: { locale: SupportedLocales}) {
   return (
-    <div className="lg:h-[90vh] overflow-hidden h-[86vh]">
+    <div className="lg:h-[45vh] overflow-hidden h-[86vh]">
       <TimelineNoSSR colorTheme="light" autosize symbol="COINBASE:ETHUSD" locale={props.locale} />
     </div>
   );

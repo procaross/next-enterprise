@@ -1,5 +1,6 @@
 import React from 'react';
 import CryptoTimeline from "@/components/CryptoTimeline";
+import MarketSentimentChart from "@/components/MarketSentimentChart";
 import TwitterFeed from "@/components/TwitterFeed";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getCurrentLocale } from "@/locales/server";
@@ -19,11 +20,16 @@ export default function Page() {
         <Tabs defaultValue="crypto">
           <TabsList className="flex px-1">
             <TabsTrigger value="crypto" className="w-full">Crypto Timeline</TabsTrigger>
+            <TabsTrigger value="market" className="w-full">Market Sentiment</TabsTrigger>
             <TabsTrigger value="twitter" className="w-full">Twitter Feed</TabsTrigger>
           </TabsList>
 
           <TabsContent value="crypto">
             <CryptoTimeline locale={locale}/>
+          </TabsContent>
+
+          <TabsContent value="market">
+            <MarketSentimentChart locale={locale}/>
           </TabsContent>
 
           <TabsContent value="twitter">
@@ -35,6 +41,7 @@ export default function Page() {
       <div className="hidden lg:flex overflow-hidden">
         <div className="w-2/5 p-2">
           <CryptoTimeline locale={locale}/>
+          <MarketSentimentChart locale={locale}/>
         </div>
 
         <div className="w-3/4 p-2">

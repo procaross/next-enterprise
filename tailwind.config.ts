@@ -19,6 +19,7 @@ const config = {
     },
     extend: {
       colors: {
+        'tv-border-dark': '#e0e3eb',
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
