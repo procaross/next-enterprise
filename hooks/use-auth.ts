@@ -1,23 +1,24 @@
+// @ts-ignore
+import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
 
 export const useAuth = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
-    const accessToken = localStorage.getItem("access_token");
-    const refreshToken = localStorage.getItem("refresh_token");
+    const accessToken = Cookies.get("access_token_cookie");
+    const refreshToken = Cookies.get("refresh_token_cookie");
+    console.log(refreshToken)
     setIsAuthenticated(!!accessToken && !!refreshToken);
   }, []);
 
-  const login = (accessToken: string, refreshToken: string) => {
-    localStorage.setItem("access_token", accessToken);
-    localStorage.setItem("refresh_token", refreshToken);
+  const login = () => {
     setIsAuthenticated(true);
   };
 
   const logout = () => {
-    localStorage.removeItem("access_token");
-    localStorage.removeItem("refresh_token");
+    Cookies.remove("access_token_cookie");
+    Cookies.remove("refresh_token_cookie");
     setIsAuthenticated(false);
   };
 

@@ -1,11 +1,13 @@
+'use client'
 import { IdCardIcon } from '@radix-ui/react-icons'
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import TechnicalAnalysis from "@/components/TechnicalAnalysis";
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
 import { SupportedLocales } from "@/types/i18n";
+import EthereumAnalysisSkeleton from "@/components/skeleton/EthereumAnalysisSkeleton";
 
 
 interface FuturePrediction {
@@ -49,15 +51,9 @@ interface EthereumAnalysisData {
 }
 
 async function fetchEthereumAnalysisData(): Promise<EthereumAnalysisData> {
-  const accessToken = localStorage.getItem("access_token");
-  const headers = new Headers();
-
-  if (accessToken) {
-    headers.append("Authorization", `Bearer ${accessToken}`);
-  }
-
-  const res = await fetch('http://127.0.0.1:5000/get-analysis', { headers });
-
+  const res = await fetch('http://127.0.0.1:5000/get-analysis', {
+    credentials: 'include'
+  });
   if (!res.ok) {
     throw new Error('Failed to fetch data');
   }
@@ -65,10 +61,38 @@ async function fetchEthereumAnalysisData(): Promise<EthereumAnalysisData> {
   return res.json() as Promise<EthereumAnalysisData>;
 }
 
-async function EthereumAnalysis(props: { locale: SupportedLocales}) {
-  const AnalysisData = await fetchEthereumAnalysisData();
+const EthereumAnalysis = (props: { locale: SupportedLocales }) => {
+  const [analysisData, setAnalysisData] = useState<EthereumAnalysisData | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchEthereumAnalysisData = async () => {
+      try {
+        const res = await fetch('http://127.0.0.1:5000/get-analysis', {
+          credentials: 'include'
+        });
+        if (!res.ok) {
+          throw new Error('Failed to fetch data');
+        }
+        const data = await res.json();
+        // @ts-ignore
+        setAnalysisData(data);
+        setIsLoading(false);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setIsLoading(false);
+      }
+    }
+
+    fetchEthereumAnalysisData();
+  }, []);
+
+  if (isLoading) return <EthereumAnalysisSkeleton/>;
+  if (!analysisData) return <p>No analysis data</p>;
+
   const { future_prediction, market_sentiment_analysis,
-    price_alert_points, technical_analysis, trading_alert, timestamp, is_latest, user_points } = AnalysisData;
+    price_alert_points, technical_analysis, trading_alert, timestamp, is_latest, user_points } = analysisData;
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-4">
       <Card className="col-span-1 max-w-sm">

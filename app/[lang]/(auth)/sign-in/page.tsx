@@ -10,10 +10,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useAuth } from "@/hooks/use-auth";
 import { cn } from "@/lib/utils"
-import {
-  AuthCredentialsValidator,
-  TAuthCredentialsValidator,
-} from "@/lib/validators/account-credentials-validator"
+import { AuthCredentialsValidator, TAuthCredentialsValidator, } from "@/lib/validators/account-credentials-validator"
 import { useScopedI18n } from "@/locales/client"
 
 interface LoginResponse {
@@ -43,13 +40,12 @@ export default function Page() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ email, password }),
+        credentials: 'include'
       });
 
       if (response.ok) {
-        const data = await response.json() as LoginResponse;
-        const { access_token, refresh_token } = data;
-        login(access_token, refresh_token);
-        await router.push("/");
+        login();
+        router.push("/");
       } else {
         console.error("Login failed:", response.statusText);
       }

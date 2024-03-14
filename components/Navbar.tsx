@@ -1,11 +1,11 @@
 import Link from 'next/link'
-import MaxWidthWrapper from './MaxWidthWrapper'
 import { Icons } from './Icons/Icons'
+import MaxWidthWrapper from './MaxWidthWrapper'
 import NavItems from './NavItems'
-import { buttonVariants } from './ui/button'
 import MobileNav from './MobileNav'
 import { SupportedLocales } from "@/types/i18n";
 import { getCurrentLocale } from "@/locales/server";
+import AuthButton from "@/components/AuthButton";
 
 const Navbar = async () => {
   const localeMap: { [key: string]: SupportedLocales } = {
@@ -32,15 +32,8 @@ const Navbar = async () => {
                 <NavItems locale={locale}/>
               </div>
 
-              <div className='ml-auto flex items-center'>
-                <div className='hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6 lg:ml-10'>
-                  <Link href='/sign-in' className={buttonVariants({
-                    variant: 'ghost',
-                  })}>
-                    Log In
-                  </Link>
-                </div>
-              </div>
+              <AuthButton/>
+
             </div>
           </div>
         </MaxWidthWrapper>

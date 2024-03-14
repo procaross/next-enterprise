@@ -1,7 +1,9 @@
 import { Metadata } from "next"
 import { getCurrentLocale, getScopedI18n } from "@/locales/server"
-import KlineChart from "@/components/KlineChart";
 import { SupportedLocales } from '@/types/i18n'
+import EthereumAnalysis from "@/components/EthereumAnalysis";
+import WhaleTransactionSankeyViz from "@/components/WhaleTransactionSankeyViz";
+
 export async function generateMetadata(): Promise<Metadata> {
   const scopedTMetaData = await getScopedI18n("metaData")
 
@@ -20,7 +22,8 @@ export default function Home() {
 
   return (
     <div className="overflow-hidden">
-      <KlineChart locale={locale}/>
+      <EthereumAnalysis locale={locale}/>
+      <WhaleTransactionSankeyViz/>
     </div>
   )
 }
