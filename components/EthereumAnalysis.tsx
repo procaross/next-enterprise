@@ -8,47 +8,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 
 import { SupportedLocales } from "@/types/i18n";
 import EthereumAnalysisSkeleton from "@/components/skeleton/EthereumAnalysisSkeleton";
-
-
-interface FuturePrediction {
-  next_day: string;
-}
-
-interface MarketSentimentAnalysis {
-  reason: string;
-  score: number;
-  sentiment: string;
-}
-
-interface MarketTrend {
-  evidence: string;
-  trend: string;
-}
-
-interface PriceAlertPoint {
-  alert_point: number;
-  reason: string;
-  strategy: string;
-  type: string;
-}
-
-interface TradingAlert {
-  action: string;
-  predicted_price: number;
-  time: string;
-}
-
-interface EthereumAnalysisData {
-  future_prediction: FuturePrediction;
-  market_sentiment_analysis: MarketSentimentAnalysis;
-  market_trends: MarketTrend[];
-  price_alert_points: PriceAlertPoint[];
-  technical_analysis: string;
-  trading_alert: TradingAlert;
-  timestamp: number;
-  is_latest: boolean;
-  user_points: number;
-}
+import { EthereumAnalysisData } from "@/types/analysis";
 
 async function fetchEthereumAnalysisData(): Promise<EthereumAnalysisData> {
   const res = await fetch('http://127.0.0.1:5000/get-analysis', {
@@ -91,7 +51,7 @@ const EthereumAnalysis = (props: { locale: SupportedLocales }) => {
   if (!analysisData) return <p>No analysis data</p>;
 
   const { future_prediction, market_sentiment_analysis,
-    price_alert_points, technical_analysis, trading_alert, timestamp, is_latest, user_points } = analysisData;
+    price_alert_points, technical_analysis, trading_alert, timestamp, is_latest, user_points, on_chain_analysis } = analysisData;
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-4">
@@ -139,7 +99,7 @@ const EthereumAnalysis = (props: { locale: SupportedLocales }) => {
         </CardContent>
       </Card>
 
-      <Card className="col-span-1 max-w-sm">
+      <Card className="col-span-1 max-w-sm min-h-[40vh]">
         <TechnicalAnalysis locale={props.locale}/>
       </Card>
       <Card className="col-span-1 max-w-sm">
@@ -177,13 +137,37 @@ const EthereumAnalysis = (props: { locale: SupportedLocales }) => {
           </div>
         </CardContent>
       </Card>
+
+      <Card className="col-span-1 max-w-sm">
+        <CardHeader>
+          <CardTitle>链上分析</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <CardDescription>{on_chain_analysis}</CardDescription>
+        </CardContent>
+      </Card>
+
+      <Card className="col-span-1 max-w-sm">
+        <CardHeader>
+          <CardTitle>报告信息</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <CardDescription>
+            <p>剩余分析次数: {user_points}</p>
+            <p>报告生成时间: {new Date(timestamp * 1000).toLocaleString()}</p>
+          </CardDescription>
+        </CardContent>
+        <CardFooter>
+          {is_latest && (
+            <Button className="w-full" onClick={() => fetchEthereumAnalysisData()}>获取最新报告</Button>
+          )}
+        </CardFooter>
+      </Card>
+
       <div className="mb-4">
-        <p>剩余分析次数: {user_points}</p>
-        <p>报告生成时间: {new Date(timestamp * 1000).toLocaleString()}</p>
+
       </div>
-      { !is_latest && (
-        <Button onClick={() => fetchEthereumAnalysisData()}>获取最新报告</Button>
-      )}
+
     </div>
   );
 }

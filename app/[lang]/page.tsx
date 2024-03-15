@@ -21,8 +21,11 @@ export default function Home() {
   const locale = localeMap[getCurrentLocale()] || "en";
 
   return (
-    <div className="overflow-hidden">
-      <EthereumAnalysis locale={locale}/>
+    <div className="overflow-hidden px-12 pt-4">
+      <div className="mb-12">
+        <EthereumAnalysis locale={locale}/>
+      </div>
+
       <WhaleTransactionSankeyViz/>
     </div>
   )

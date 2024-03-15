@@ -22,7 +22,7 @@ const Navbar = async () => {
 
               <MobileNav/>
 
-              <div className='flex-1 flex justify-center lg:justify-start lg:ml-10'>
+              <div className='flex-1 flex justify-center lg:justify-start lg:ml-10 cursor-pointer'>
                 <Link href='/'>
                   <Icons.logo className='h-14 w-14'/>
                 </Link>

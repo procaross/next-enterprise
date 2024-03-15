@@ -36,4 +36,5 @@ export interface EthereumAnalysisData {
   timestamp: number;
   is_latest: boolean;
   user_points: number;
+  on_chain_analysis: string;
 }
