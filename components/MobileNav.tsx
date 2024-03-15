@@ -1,12 +1,12 @@
 'use client';
 import { useState, useEffect, SetStateAction } from 'react';
 import { Menu, X } from 'lucide-react';
-import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { CRYPTO_CATEGORIES } from '@/config/index';
 import MarketWidget from '@/components/MarketWidget';
 import CryptoCoinsHeatmap from '@/components/CryptoHeatmap';
 import { SupportedLocales } from "@/types/i18n";
+import MobileAuthButton from "@/components/MobileAuthButton";
 
 interface MobileNavProps {
   locale: SupportedLocales
@@ -67,7 +67,7 @@ const MobileNav = ({locale} : MobileNavProps) => {
               ))}
             </ul>
           </div>
-          {/* 其他操作按钮例如登录、注册等 */}
+          <MobileAuthButton/>
         </div>
       </div>
     </div>

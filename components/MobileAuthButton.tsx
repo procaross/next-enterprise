@@ -8,8 +8,8 @@ const AuthButton = () => {
   const { isAuthenticated, logout } = useAuth();
 
   return (
-    <div className='lg:ml-auto flex items-center'>
-      <div className='hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6 lg:ml-10'>
+    <div className='flex items-center'>
+      <div className='w-full'>
         {isAuthenticated ? (
           <button
             onClick={logout}
