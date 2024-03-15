@@ -17,9 +17,7 @@ const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
     <head />
     <body>
     {shouldShowNavbar && <Navbar />}
-    <div className={shouldShowNavbar ? 'pt-16' : ''}>
-      {children}
-    </div>
+    {children}
     </body>
     </html>
   )

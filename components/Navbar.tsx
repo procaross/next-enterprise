@@ -14,7 +14,7 @@ const Navbar = async () => {
   };
   const locale = localeMap[getCurrentLocale()] || "en";
   return (
-    <div className='bg-white z-50 top-0 inset-x-0 h-18 fixed border-b-gray-200 border-b'>
+    <div className='bg-white z-50 top-0 inset-x-0 h-18 sticky border-b-gray-200 border-b'>
       <header className='relative bg-white'>
         <MaxWidthWrapper>
           <div>
