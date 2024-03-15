@@ -36,7 +36,7 @@ const MobileNav = ({locale} : MobileNavProps) => {
   }, [isOpen]);
 
   if (!isOpen) return (
-    <button type='button' onClick={() => setIsOpen(true)} className='lg:hidden relative -m-2 inline-flex items-center justify-center rounded-md p-2 text-gray-400'>
+    <button type='button' onClick={() => setIsOpen(true)} className='fixed lg:hidden -m-2 inline-flex items-center justify-center rounded-md p-2 text-gray-400'>
       <Menu className='h-6 w-6' aria-hidden='true' />
     </button>
   );
@@ -46,7 +46,7 @@ const MobileNav = ({locale} : MobileNavProps) => {
       <div className='w-full max-w-xs'>
         <div className='flex flex-col overflow-y-auto bg-white shadow-xl'>
           <div className='flex px-4 pb-2 pt-5'>
-            <button type='button' onClick={() => setIsOpen(false)} className='relative -m-2 inline-flex items-center justify-center rounded-md p-2 text-gray-400'>
+            <button type='button' onClick={() => setIsOpen(false)} className='fixed lg:hidden -m-2 inline-flex items-center justify-center rounded-md p-2 text-gray-400'>
               <X className='h-6 w-6' aria-hidden='true' />
             </button>
           </div>
