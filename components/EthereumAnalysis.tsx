@@ -9,6 +9,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { SupportedLocales } from "@/types/i18n";
 import EthereumAnalysisSkeleton from "@/components/skeleton/EthereumAnalysisSkeleton";
 import { EthereumAnalysisData } from "@/types/analysis";
+import MiniChart from "@/components/MiniChart";
 
 async function fetchEthereumAnalysisData(): Promise<EthereumAnalysisData> {
   const res = await fetch('http://127.0.0.1:5000/get-analysis', {
@@ -99,15 +100,28 @@ const EthereumAnalysis = (props: { locale: SupportedLocales }) => {
         </CardContent>
       </Card>
 
+      <Card className="col-span-1 max-w-sm">
+        <MiniChart locale={props.locale}/>
+      </Card>
       <Card className="col-span-1 max-w-sm min-h-[40vh]">
         <TechnicalAnalysis locale={props.locale}/>
       </Card>
+
       <Card className="col-span-1 max-w-sm">
         <CardHeader>
           <CardTitle>技术分析</CardTitle>
         </CardHeader>
         <CardContent>
           <CardDescription>{technical_analysis}</CardDescription>
+        </CardContent>
+      </Card>
+
+      <Card className="col-span-1 max-w-sm">
+        <CardHeader>
+          <CardTitle>链上分析</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <CardDescription>{on_chain_analysis}</CardDescription>
         </CardContent>
       </Card>
 
@@ -138,14 +152,6 @@ const EthereumAnalysis = (props: { locale: SupportedLocales }) => {
         </CardContent>
       </Card>
 
-      <Card className="col-span-1 max-w-sm">
-        <CardHeader>
-          <CardTitle>链上分析</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <CardDescription>{on_chain_analysis}</CardDescription>
-        </CardContent>
-      </Card>
 
       <Card className="col-span-1 max-w-sm">
         <CardHeader>

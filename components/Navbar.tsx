@@ -14,7 +14,7 @@ const Navbar = async () => {
   };
   const locale = localeMap[getCurrentLocale()] || "en";
   return (
-    <div className='bg-white z-50 top-0 inset-x-0 h-16'>
+    <div className='bg-white z-50 top-0 inset-x-0 h-18 fixed border-b-gray-200 border-b'>
       <header className='relative bg-white'>
         <MaxWidthWrapper>
           <div>
@@ -23,8 +23,8 @@ const Navbar = async () => {
               <MobileNav/>
 
               <div className='flex-1 flex justify-center lg:justify-start lg:ml-10 cursor-pointer'>
-                <Link href='/'>
-                  <Icons.logo className='h-14 w-14'/>
+                <Link href='/' className="cursor-pointer">
+                  <Icons.logo className='h-14 w-14 cursor-pointer'/>
                 </Link>
               </div>
 

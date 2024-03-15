@@ -3,6 +3,7 @@ import { getCurrentLocale, getScopedI18n } from "@/locales/server"
 import { SupportedLocales } from '@/types/i18n'
 import EthereumAnalysis from "@/components/EthereumAnalysis";
 import WhaleTransactionSankeyViz from "@/components/WhaleTransactionSankeyViz";
+import TickerTape from "@/components/TickerTape";
 
 export async function generateMetadata(): Promise<Metadata> {
   const scopedTMetaData = await getScopedI18n("metaData")
@@ -21,7 +22,10 @@ export default function Home() {
   const locale = localeMap[getCurrentLocale()] || "en";
 
   return (
-    <div className="overflow-hidden px-12 pt-4">
+    <div className="overflow-hidden md:px-12 md:pt-4 px-4 pt-2">
+      <div className="mb-4">
+        <TickerTape locale={locale}/>
+      </div>
       <div className="mb-12">
         <EthereumAnalysis locale={locale}/>
       </div>

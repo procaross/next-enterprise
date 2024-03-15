@@ -12,7 +12,7 @@ const CryptoCurrencyMarketNoSSR = dynamic(
 export default function KlineChart(props: { locale: SupportedLocales}) {
   return (
     <div className="h-[60vh]">
-      <CryptoCurrencyMarketNoSSR colorTheme="light" autosize locale={props.locale} />
+      <CryptoCurrencyMarketNoSSR colorTheme="light" autosize locale={props.locale}/>
     </div>
   );
 }

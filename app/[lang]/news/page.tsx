@@ -38,13 +38,13 @@ export default function Page() {
         </Tabs>
       </div>
 
-      <div className="hidden lg:flex overflow-hidden">
-        <div className="w-2/5 p-2">
+      <div className="hidden lg:flex overflow-hidden px-12 pt-4">
+        <div className="w-2/5">
           <CryptoTimeline locale={locale}/>
           <MarketSentimentChart locale={locale}/>
         </div>
 
-        <div className="w-3/4 p-2">
+        <div className="w-3/4">
           <TwitterFeed/>
         </div>
       </div>
