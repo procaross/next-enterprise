@@ -4,11 +4,7 @@ export const CRYPTO_CATEGORIES = [
     value: 'popular_currencies',
   },
   {
-    label: 'Crypto Analysis',
-    value: 'crypto_analysis',
-  },
-  {
-    label: 'Whale Transaction',
-    value: 'whale_transaction',
+    label: 'Crypto Heatmap',
+    value: 'crypto_heatmap',
   },
 ];

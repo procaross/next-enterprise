@@ -11,40 +11,30 @@ import EthereumAnalysisSkeleton from "@/components/skeleton/EthereumAnalysisSkel
 import { EthereumAnalysisData } from "@/types/analysis";
 import MiniChart from "@/components/MiniChart";
 
-async function fetchEthereumAnalysisData(): Promise<EthereumAnalysisData> {
-  const res = await fetch('http://127.0.0.1:5000/get-analysis', {
-    credentials: 'include',
-  });
-  if (!res.ok) {
-    throw new Error('Failed to fetch data');
-  }
-
-  return res.json() as Promise<EthereumAnalysisData>;
-}
-
 const EthereumAnalysis = (props: { locale: SupportedLocales }) => {
   const [analysisData, setAnalysisData] = useState<EthereumAnalysisData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [showAllAlertPoint, setShowAllAlertPoint] = useState(false);
+
+  const fetchEthereumAnalysisData = async () => {
+    try {
+      const res = await fetch('http://127.0.0.1:5000/get-analysis', {
+        credentials: 'include',
+      });
+      if (!res.ok) {
+        throw new Error('Failed to fetch data');
+      }
+      const data = await res.json();
+      // @ts-ignore
+      setAnalysisData(data);
+      setIsLoading(false);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      setIsLoading(false);
+    }
+  }
 
   useEffect(() => {
-    const fetchEthereumAnalysisData = async () => {
-      try {
-        const res = await fetch('http://127.0.0.1:5000/get-analysis', {
-          credentials: 'include',
-        });
-        if (!res.ok) {
-          throw new Error('Failed to fetch data');
-        }
-        const data = await res.json();
-        // @ts-ignore
-        setAnalysisData(data);
-        setIsLoading(false);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-        setIsLoading(false);
-      }
-    }
-
     fetchEthereumAnalysisData();
   }, []);
 
@@ -55,7 +45,7 @@ const EthereumAnalysis = (props: { locale: SupportedLocales }) => {
     price_alert_points, technical_analysis, trading_alert, timestamp, is_latest, user_points, on_chain_analysis } = analysisData;
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
       <Card className="col-span-1 max-w-sm">
         <CardHeader>
           <CardTitle>
@@ -81,16 +71,15 @@ const EthereumAnalysis = (props: { locale: SupportedLocales }) => {
         </CardFooter>
       </Card>
 
-      <Card className="col-span-1 max-w-sm">
+      <Card className="col-span-1 max-w-sm flex-col flex">
         <CardHeader>
           <CardTitle>价格预警点</CardTitle>
         </CardHeader>
-        <CardContent>
-          {price_alert_points.map((alert, index) => (
+        <CardContent className="flex-1">
+          {price_alert_points.slice(0, showAllAlertPoint ? price_alert_points.length : 2).map((alert, index) => (
             <div key={index} className="mb-4 last:mb-0">
               <div className="flex items-center space-x-2">
-                <span className={`flex h-3 w-3 rounded-full ${alert.type === 'breakthrough' ? 'bg-green-500' :
-                  'bg-red-500'}`}/>
+                <span className={`flex h-3 w-3 rounded-full ${alert.type === 'breakthrough' ? 'bg-green-500' : 'bg-red-500'}`}/>
                 <p>{alert.alert_point} USDT</p>
               </div>
               <p className="text-muted-foreground p-1">{alert.reason}</p>
@@ -98,12 +87,27 @@ const EthereumAnalysis = (props: { locale: SupportedLocales }) => {
             </div>
           ))}
         </CardContent>
+        <CardFooter>
+          {price_alert_points.length > 2 && (
+            <Button className="w-full" onClick={() => {
+              setShowAllAlertPoint(!showAllAlertPoint);
+              if (showAllAlertPoint) {
+                window.scrollTo({
+                  top: 0,
+                  behavior: 'smooth'
+                });
+              }
+            }}>
+            <IdCardIcon className="mr-2 h-4 w-4"/> {showAllAlertPoint ? '收起' : '展开更多'}
+            </Button>
+          )}
+        </CardFooter>
       </Card>
 
       <Card className="col-span-1 max-w-sm">
         <MiniChart locale={props.locale}/>
       </Card>
-      <Card className="col-span-1 max-w-sm min-h-[50vh] sm:min-h-[40vh]">
+      <Card className="col-span-1 max-w-sm md:min-h-[50vh] sm:min-h-[40vh] min-h-[50vh]">
         <TechnicalAnalysis locale={props.locale}/>
       </Card>
 
@@ -153,7 +157,7 @@ const EthereumAnalysis = (props: { locale: SupportedLocales }) => {
       </Card>
 
 
-      <Card className="col-span-1 max-w-sm">
+      <Card className="col-span-1 max-w-sm h-fit">
         <CardHeader>
           <CardTitle>报告信息</CardTitle>
         </CardHeader>

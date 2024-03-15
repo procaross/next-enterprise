@@ -20,7 +20,7 @@ const Navbar = async () => {
           <div>
             <div className='flex h-16 items-center justify-between lg:justify-start'>
 
-              <MobileNav/>
+              <MobileNav locale={locale}/>
 
               <div className='flex-1 flex justify-center lg:justify-start lg:ml-10 cursor-pointer'>
                 <Link href='/' className="cursor-pointer">

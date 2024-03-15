@@ -2,15 +2,13 @@ import { CRYPTO_CATEGORIES } from '@/config'
 import { Button } from './ui/button'
 import { ChevronDown } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import Image from 'next/image'
-import Link from 'next/link'
-import MarketWidget from './MarketWidget'
+import CryptoCoinsHeatmap from "@/components/CryptoHeatmap";
+import CryptoCurrencyMarket from "@/components/MarketWidget";
 import { SupportedLocales } from "@/types/i18n";
-import EthereumAnalysisCard from "@/components/EthereumAnalysis";
-import EthereumAnalysisSkeleton from "@/components/skeleton/EthereumAnalysisSkeleton";
 import { Suspense } from "react";
 import WhaleTransactionSankeyViz from "@/components/WhaleTransactionSankeyViz";
 import WhaleTransactionSankeyVizSkeleton from "@/components/skeleton/WhaleTransactionSankeyVizSkeleton";
+
 type Category = (typeof CRYPTO_CATEGORIES)[number]
 
 interface NavItemProps {
@@ -68,16 +66,14 @@ const NavItem = ({
             <div className="mx-auto max-w-8xl px-8">
               {category.label === 'Popular Currencies' ? (
                 <div className="pb-8">
-                  <MarketWidget locale={locale}/>
+                  <CryptoCurrencyMarket locale={locale}/>
                 </div>
-              ) : category.label === 'Crypto Analysis' ? (
+              ) : category.label === 'Crypto Heatmap' ? (
                 <div className="pb-8">
-                  <Suspense fallback={<EthereumAnalysisSkeleton/>}>
-                    <EthereumAnalysisCard locale={locale}/>
-                  </Suspense>
+                  <CryptoCoinsHeatmap locale={locale}/>
                 </div>
               ) : (
-                <div className="pb-8">
+                <div className="pb-8 h-fit">
                   <Suspense fallback={<WhaleTransactionSankeyVizSkeleton/>}>
                     <WhaleTransactionSankeyViz/>
                   </Suspense>
