@@ -52,7 +52,7 @@ interface EthereumAnalysisData {
 
 async function fetchEthereumAnalysisData(): Promise<EthereumAnalysisData> {
   const res = await fetch('http://127.0.0.1:5000/get-analysis', {
-    credentials: 'include'
+    credentials: 'include',
   });
   if (!res.ok) {
     throw new Error('Failed to fetch data');
@@ -69,7 +69,7 @@ const EthereumAnalysis = (props: { locale: SupportedLocales }) => {
     const fetchEthereumAnalysisData = async () => {
       try {
         const res = await fetch('http://127.0.0.1:5000/get-analysis', {
-          credentials: 'include'
+          credentials: 'include',
         });
         if (!res.ok) {
           throw new Error('Failed to fetch data');

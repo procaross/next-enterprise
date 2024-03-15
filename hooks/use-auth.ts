@@ -1,4 +1,3 @@
-// @ts-ignore
 import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
 
@@ -6,9 +5,8 @@ export const useAuth = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
-    const accessToken = Cookies.get("access_token_cookie");
-    const refreshToken = Cookies.get("refresh_token_cookie");
-    console.log(refreshToken)
+    const accessToken = Cookies.get("csrf_access_token");
+    const refreshToken = Cookies.get("csrf_refresh_token");
     setIsAuthenticated(!!accessToken && !!refreshToken);
   }, []);
 
@@ -17,8 +15,8 @@ export const useAuth = () => {
   };
 
   const logout = () => {
-    Cookies.remove("access_token_cookie");
-    Cookies.remove("refresh_token_cookie");
+    Cookies.remove("csrf_access_token");
+    Cookies.remove("csrf_refresh_token");
     setIsAuthenticated(false);
   };
 

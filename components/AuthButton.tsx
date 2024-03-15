@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { buttonVariants } from '@/components/ui/button';
 
 const AuthButton = () => {
-  const { isAuthenticated, login, logout } = useAuth();
+  const { isAuthenticated, logout } = useAuth();
 
   return (
     <div className='ml-auto flex items-center'>
