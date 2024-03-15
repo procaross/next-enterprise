@@ -5,7 +5,8 @@ export default {
     homePageDescription: "Chain to the Future，CryptoInsight Pro",
     authDescription: "Chain to the Future，CryptoInsight Pro",
     appUnavailable: "CryptoInsight Pro Unavailable",
-    klineTitle: "Kline | CryptoInsight Pro"
+    klineTitle: "Real-time Candlestick Chart | CryptoInsight Pro",
+    newsTitle: "Market Trends | CryptoInsight Pro"
   },
   page: {
     auth: {

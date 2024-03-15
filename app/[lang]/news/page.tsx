@@ -3,8 +3,16 @@ import CryptoTimeline from "@/components/CryptoTimeline";
 import MarketSentimentChart from "@/components/MarketSentimentChart";
 import TwitterFeed from "@/components/TwitterFeed";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { getCurrentLocale } from "@/locales/server";
+import { getCurrentLocale, getScopedI18n } from "@/locales/server";
 import { SupportedLocales } from "@/types/i18n";
+import type { Metadata } from "next";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const scopedTMetaData = await getScopedI18n("metaData")
+  return {
+    title: scopedTMetaData("newsTitle"),
+  }
+}
 
 export default function Page() {
   const localeMap: { [key: string]: SupportedLocales } = {

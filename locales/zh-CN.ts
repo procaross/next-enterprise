@@ -5,7 +5,8 @@ export default {
     homePageDescription: "链见未来，CryptoInsight Pro",
     authDescription: "链见未来，CryptoInsight Pro",
     appUnavailable: "CryptoInsight Pro 暂不可用",
-    klineTitle: "实时K线 | CryptoInsight Pro"
+    klineTitle: "实时K线 | CryptoInsight Pro",
+    newsTitle: "市场行情 | CryptoInsight Pro"
   },
   page: {
     auth: {

@@ -103,7 +103,7 @@ const EthereumAnalysis = (props: { locale: SupportedLocales }) => {
       <Card className="col-span-1 max-w-sm">
         <MiniChart locale={props.locale}/>
       </Card>
-      <Card className="col-span-1 max-w-sm min-h-[40vh]">
+      <Card className="col-span-1 max-w-sm min-h-[50vh] sm:min-h-[40vh]">
         <TechnicalAnalysis locale={props.locale}/>
       </Card>
 
