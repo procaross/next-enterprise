@@ -168,9 +168,7 @@ const EthereumAnalysis = (props: { locale: SupportedLocales }) => {
           </CardDescription>
         </CardContent>
         <CardFooter>
-          {is_latest && (
-            <Button className="w-full" onClick={() => fetchEthereumAnalysisData()}>获取最新报告</Button>
-          )}
+          <Button className="w-full" onClick={() => fetchEthereumAnalysisData()}>获取最新报告</Button>
         </CardFooter>
       </Card>
 

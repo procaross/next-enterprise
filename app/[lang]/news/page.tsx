@@ -6,6 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getCurrentLocale, getScopedI18n } from "@/locales/server";
 import { SupportedLocales } from "@/types/i18n";
 import type { Metadata } from "next";
+import TwitterFeedSkeleton from "@/components/skeleton/TwitterFeedSkeleton";
 
 export async function generateMetadata(): Promise<Metadata> {
   const scopedTMetaData = await getScopedI18n("metaData")
@@ -53,7 +54,8 @@ export default function Page() {
         </div>
 
         <div className="w-3/4">
-          <TwitterFeed/>
+          {/*<TwitterFeed/>*/}
+          <TwitterFeedSkeleton/>
         </div>
       </div>
     </div>

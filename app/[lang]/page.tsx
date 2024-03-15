@@ -26,7 +26,7 @@ export default function Home() {
       <div className="mb-4">
         <TickerTape locale={locale}/>
       </div>
-      <div className="mb-12">
+      <div className="mb-2">
         <EthereumAnalysis locale={locale}/>
       </div>
 
